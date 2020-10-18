@@ -17,12 +17,17 @@ struct ContentView: View {
 	@EnvironmentObject var router: ImageRouter
 	
 	var body: some View {
-		HStack() {
+		VStack() {
+			Text(portal.isReachable ? "Reachable" : "Unreachable")
+				.foregroundColor(portal.isReachable ? .green : .red)
+			if let context = portal.counterpartApplicationContext {
+				Text(context.description)
+			}
 			Button("Ping") {
-				PortalToWatch.instance.send("message ping")
+				portal.send("message ping")
 			}
 			Button("Pong") {
-				PortalToWatch.instance.send("pong message")
+				portal.send("pong message")
 			}
 			
 			if let image = router.image {
@@ -30,7 +35,14 @@ struct ContentView: View {
 			}
 			Button("Send Image") {
 				let file = Bundle.main.url(forResource: "apple", withExtension: "jpeg")!
-				PortalToWatch.instance.send(file)
+				portal.send(file)
+			}
+			Button("Send User Info") {
+				portal.send(userInfo: ["a": "B"])
+			}
+
+			Button("Send Context") {
+				portal.applicationContext = ["A": "b"]
 			}
 		}
 		if let message = portal.mostRecentMessage {

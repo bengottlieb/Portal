@@ -190,10 +190,10 @@
 			isa = PBXGroup;
 			children = (
 				B503C4CD253B5B530058F4A0 /* DevicePortal.swift */,
-				B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */,
-				B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */,
 				B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */,
 				B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */,
+				B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */,
+				B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */,
 			);
 			name = Portal;
 			path = ../../Sources/Portal;

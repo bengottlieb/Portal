@@ -19,6 +19,11 @@ struct ContentView: View {
 	var body: some View {
 		ScrollView() {
 			VStack() {
+				Text(portal.isReachable ? "Reachable" : "Unreachable")
+					.foregroundColor(portal.isReachable ? .green : .red)
+				if let context = portal.counterpartApplicationContext {
+					Text(context.description)
+				}
 				if let message = portal.mostRecentMessage {
 					Text(message.description)
 						.padding()
@@ -29,6 +34,14 @@ struct ContentView: View {
 				Button("Send Image") {
 					let file = Bundle.main.url(forResource: "apple", withExtension: "jpeg")!
 					PortalToPhone.instance.send(file)
+				}
+				
+				Button("Send Context") {
+					portal.applicationContext = ["C": "d"]
+				}
+
+				Button("Send User Info") {
+					portal.send(userInfo: ["C": "d"])
 				}
 				HStack() {
 					Button("Ping") {

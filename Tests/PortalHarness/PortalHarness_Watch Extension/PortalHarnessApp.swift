@@ -17,6 +17,10 @@ class ImageRouter: ObservableObject {
 struct PortalHarnessApp: App, PortalMessageHandler {
 	let router = ImageRouter()
 
+	func didReceive(userInfo: [String: Any]) {
+		print(userInfo)
+	}
+
 	func didReceive(message: PortalMessage) {
 		message.completion?(.success(["success": true]))
 	}
