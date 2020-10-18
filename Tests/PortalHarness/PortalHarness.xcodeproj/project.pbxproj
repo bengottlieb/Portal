@@ -1,0 +1,1014 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B503C4CF253B5B530058F4A0 /* DevicePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4CD253B5B530058F4A0 /* DevicePortal.swift */; };
+		B503C4D0253B5B530058F4A0 /* PortalToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */; };
+		B503C4D4253B5B5D0058F4A0 /* DevicePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4CD253B5B530058F4A0 /* DevicePortal.swift */; };
+		B503C4D9253B5C8C0058F4A0 /* PortalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */; };
+		B503C4DA253B5C8C0058F4A0 /* PortalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */; };
+		B503C4E8253B67650058F4A0 /* PortalMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */; };
+		B503C4E9253B67650058F4A0 /* PortalMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */; };
+		B503C508253B82940058F4A0 /* PortalToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */; };
+		B503C513253BD42A0058F4A0 /* apple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B503C512253BD42A0058F4A0 /* apple.jpeg */; };
+		B5698327253B437300FEE479 /* PortalHarnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5698326253B437300FEE479 /* PortalHarnessApp.swift */; };
+		B5698329253B437300FEE479 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5698328253B437300FEE479 /* ContentView.swift */; };
+		B569832B253B437300FEE479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B569832A253B437300FEE479 /* Assets.xcassets */; };
+		B569832E253B437300FEE479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B569832D253B437300FEE479 /* Preview Assets.xcassets */; };
+		B569833C253B452700FEE479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B569833B253B452700FEE479 /* Assets.xcassets */; };
+		B5698343253B452700FEE479 /* PortalHarness_Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B5698342253B452700FEE479 /* PortalHarness_Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B5698348253B452700FEE479 /* PortalHarnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5698347253B452700FEE479 /* PortalHarnessApp.swift */; };
+		B569834A253B452700FEE479 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5698349253B452700FEE479 /* ContentView.swift */; };
+		B569834C253B452700FEE479 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569834B253B452700FEE479 /* NotificationController.swift */; };
+		B569834E253B452700FEE479 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569834D253B452700FEE479 /* NotificationView.swift */; };
+		B5698350253B452700FEE479 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569834F253B452700FEE479 /* ComplicationController.swift */; };
+		B5698352253B452800FEE479 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5698351253B452800FEE479 /* Assets.xcassets */; };
+		B5698355253B452800FEE479 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5698354253B452800FEE479 /* Preview Assets.xcassets */; };
+		B569835A253B452800FEE479 /* PortalHarness_Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B5698339253B452600FEE479 /* PortalHarness_Watch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B569836F253B45D200FEE479 /* Portal_Watch.h in Headers */ = {isa = PBXBuildFile; fileRef = B569836D253B45D200FEE479 /* Portal_Watch.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5698372253B45D200FEE479 /* Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B569836B253B45D200FEE479 /* Portal.framework */; };
+		B5698373253B45D200FEE479 /* Portal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B569836B253B45D200FEE479 /* Portal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5698384253B45DE00FEE479 /* Portal_Phone.h in Headers */ = {isa = PBXBuildFile; fileRef = B5698382253B45DE00FEE479 /* Portal_Phone.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B5698387253B45DE00FEE479 /* Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; };
+		B5698388253B45DE00FEE479 /* Portal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B5698344253B452700FEE479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B569831B253B437300FEE479 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5698341253B452700FEE479;
+			remoteInfo = "PortalHarness_Watch Extension";
+		};
+		B5698358253B452800FEE479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B569831B253B437300FEE479 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5698338253B452600FEE479;
+			remoteInfo = PortalHarness_Watch;
+		};
+		B5698370253B45D200FEE479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B569831B253B437300FEE479 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B569836A253B45D200FEE479;
+			remoteInfo = Portal_Watch;
+		};
+		B5698385253B45DE00FEE479 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B569831B253B437300FEE479 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B569837F253B45DE00FEE479;
+			remoteInfo = Portal_Phone;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B569835E253B452800FEE479 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B5698343253B452700FEE479 /* PortalHarness_Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698362253B452800FEE479 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				B569835A253B452800FEE479 /* PortalHarness_Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698377253B45D200FEE479 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5698373253B45D200FEE479 /* Portal.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569838C253B45DE00FEE479 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5698388253B45DE00FEE479 /* Portal.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		B503C4CD253B5B530058F4A0 /* DevicePortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePortal.swift; sourceTree = "<group>"; };
+		B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalToPhone.swift; sourceTree = "<group>"; };
+		B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalMessage.swift; sourceTree = "<group>"; };
+		B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalToWatch.swift; sourceTree = "<group>"; };
+		B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalMessageHandler.swift; sourceTree = "<group>"; };
+		B503C512253BD42A0058F4A0 /* apple.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpeg; sourceTree = "<group>"; };
+		B5698323253B437300FEE479 /* PortalHarness_Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalHarness_Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5698326253B437300FEE479 /* PortalHarnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalHarnessApp.swift; sourceTree = "<group>"; };
+		B5698328253B437300FEE479 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B569832A253B437300FEE479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B569832D253B437300FEE479 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B569832F253B437300FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5698339253B452600FEE479 /* PortalHarness_Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalHarness_Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B569833B253B452700FEE479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B569833D253B452700FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5698342253B452700FEE479 /* PortalHarness_Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "PortalHarness_Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5698347253B452700FEE479 /* PortalHarnessApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalHarnessApp.swift; sourceTree = "<group>"; };
+		B5698349253B452700FEE479 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B569834B253B452700FEE479 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		B569834D253B452700FEE479 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		B569834F253B452700FEE479 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		B5698351253B452800FEE479 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5698354253B452800FEE479 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B5698356253B452800FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5698357253B452800FEE479 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		B569836B253B45D200FEE479 /* Portal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Portal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B569836D253B45D200FEE479 /* Portal_Watch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Portal_Watch.h; sourceTree = "<group>"; };
+		B569836E253B45D200FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5698380253B45DE00FEE479 /* Portal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Portal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5698382253B45DE00FEE479 /* Portal_Phone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Portal_Phone.h; sourceTree = "<group>"; };
+		B5698383253B45DE00FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5698393253B48E300FEE479 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../../Package.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5698320253B437300FEE479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5698387253B45DE00FEE479 /* Portal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569833F253B452700FEE479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5698372253B45D200FEE479 /* Portal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698368253B45D200FEE479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569837D253B45DE00FEE479 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B503C4CC253B5B530058F4A0 /* Portal */ = {
+			isa = PBXGroup;
+			children = (
+				B503C4CD253B5B530058F4A0 /* DevicePortal.swift */,
+				B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */,
+				B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */,
+				B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */,
+				B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */,
+			);
+			name = Portal;
+			path = ../../Sources/Portal;
+			sourceTree = "<group>";
+		};
+		B569831A253B437300FEE479 = {
+			isa = PBXGroup;
+			children = (
+				B5698393253B48E300FEE479 /* Package.swift */,
+				B503C4CC253B5B530058F4A0 /* Portal */,
+				B5698325253B437300FEE479 /* PortalHarness */,
+				B569833A253B452600FEE479 /* PortalHarness_Watch */,
+				B5698346253B452700FEE479 /* PortalHarness_Watch Extension */,
+				B569836C253B45D200FEE479 /* Portal_Watch */,
+				B5698381253B45DE00FEE479 /* Portal_Phone */,
+				B5698324253B437300FEE479 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B5698324253B437300FEE479 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5698323253B437300FEE479 /* PortalHarness_Phone.app */,
+				B5698339253B452600FEE479 /* PortalHarness_Watch.app */,
+				B5698342253B452700FEE479 /* PortalHarness_Watch Extension.appex */,
+				B569836B253B45D200FEE479 /* Portal.framework */,
+				B5698380253B45DE00FEE479 /* Portal.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5698325253B437300FEE479 /* PortalHarness */ = {
+			isa = PBXGroup;
+			children = (
+				B5698326253B437300FEE479 /* PortalHarnessApp.swift */,
+				B5698328253B437300FEE479 /* ContentView.swift */,
+				B503C512253BD42A0058F4A0 /* apple.jpeg */,
+				B569832A253B437300FEE479 /* Assets.xcassets */,
+				B569832F253B437300FEE479 /* Info.plist */,
+				B569832C253B437300FEE479 /* Preview Content */,
+			);
+			path = PortalHarness;
+			sourceTree = "<group>";
+		};
+		B569832C253B437300FEE479 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B569832D253B437300FEE479 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B569833A253B452600FEE479 /* PortalHarness_Watch */ = {
+			isa = PBXGroup;
+			children = (
+				B569833B253B452700FEE479 /* Assets.xcassets */,
+				B569833D253B452700FEE479 /* Info.plist */,
+			);
+			path = PortalHarness_Watch;
+			sourceTree = "<group>";
+		};
+		B5698346253B452700FEE479 /* PortalHarness_Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B5698347253B452700FEE479 /* PortalHarnessApp.swift */,
+				B5698349253B452700FEE479 /* ContentView.swift */,
+				B569834B253B452700FEE479 /* NotificationController.swift */,
+				B569834D253B452700FEE479 /* NotificationView.swift */,
+				B569834F253B452700FEE479 /* ComplicationController.swift */,
+				B5698351253B452800FEE479 /* Assets.xcassets */,
+				B5698356253B452800FEE479 /* Info.plist */,
+				B5698357253B452800FEE479 /* PushNotificationPayload.apns */,
+				B5698353253B452800FEE479 /* Preview Content */,
+			);
+			path = "PortalHarness_Watch Extension";
+			sourceTree = "<group>";
+		};
+		B5698353253B452800FEE479 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B5698354253B452800FEE479 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B569836C253B45D200FEE479 /* Portal_Watch */ = {
+			isa = PBXGroup;
+			children = (
+				B569836D253B45D200FEE479 /* Portal_Watch.h */,
+				B569836E253B45D200FEE479 /* Info.plist */,
+			);
+			path = Portal_Watch;
+			sourceTree = "<group>";
+		};
+		B5698381253B45DE00FEE479 /* Portal_Phone */ = {
+			isa = PBXGroup;
+			children = (
+				B5698382253B45DE00FEE479 /* Portal_Phone.h */,
+				B5698383253B45DE00FEE479 /* Info.plist */,
+			);
+			path = Portal_Phone;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		B5698366253B45D200FEE479 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B569836F253B45D200FEE479 /* Portal_Watch.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569837B253B45DE00FEE479 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5698384253B45DE00FEE479 /* Portal_Phone.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		B5698322253B437300FEE479 /* PortalHarness_Phone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5698332253B437300FEE479 /* Build configuration list for PBXNativeTarget "PortalHarness_Phone" */;
+			buildPhases = (
+				B569831F253B437300FEE479 /* Sources */,
+				B5698320253B437300FEE479 /* Frameworks */,
+				B5698321253B437300FEE479 /* Resources */,
+				B5698362253B452800FEE479 /* Embed Watch Content */,
+				B569838C253B45DE00FEE479 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5698359253B452800FEE479 /* PBXTargetDependency */,
+				B5698386253B45DE00FEE479 /* PBXTargetDependency */,
+			);
+			name = PortalHarness_Phone;
+			productName = PortalHarness;
+			productReference = B5698323253B437300FEE479 /* PortalHarness_Phone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B5698338253B452600FEE479 /* PortalHarness_Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B569835F253B452800FEE479 /* Build configuration list for PBXNativeTarget "PortalHarness_Watch" */;
+			buildPhases = (
+				B5698337253B452600FEE479 /* Resources */,
+				B569835E253B452800FEE479 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5698345253B452700FEE479 /* PBXTargetDependency */,
+			);
+			name = PortalHarness_Watch;
+			productName = PortalHarness_Watch;
+			productReference = B5698339253B452600FEE479 /* PortalHarness_Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		B5698341253B452700FEE479 /* PortalHarness_Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B569835B253B452800FEE479 /* Build configuration list for PBXNativeTarget "PortalHarness_Watch Extension" */;
+			buildPhases = (
+				B569833E253B452700FEE479 /* Sources */,
+				B569833F253B452700FEE479 /* Frameworks */,
+				B5698340253B452700FEE479 /* Resources */,
+				B5698377253B45D200FEE479 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5698371253B45D200FEE479 /* PBXTargetDependency */,
+			);
+			name = "PortalHarness_Watch Extension";
+			productName = "PortalHarness_Watch Extension";
+			productReference = B5698342253B452700FEE479 /* PortalHarness_Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		B569836A253B45D200FEE479 /* Portal_Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5698374253B45D200FEE479 /* Build configuration list for PBXNativeTarget "Portal_Watch" */;
+			buildPhases = (
+				B5698366253B45D200FEE479 /* Headers */,
+				B5698367253B45D200FEE479 /* Sources */,
+				B5698368253B45D200FEE479 /* Frameworks */,
+				B5698369253B45D200FEE479 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Portal_Watch;
+			productName = Portal_Watch;
+			productReference = B569836B253B45D200FEE479 /* Portal.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B569837F253B45DE00FEE479 /* Portal_Phone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5698389253B45DE00FEE479 /* Build configuration list for PBXNativeTarget "Portal_Phone" */;
+			buildPhases = (
+				B569837B253B45DE00FEE479 /* Headers */,
+				B569837C253B45DE00FEE479 /* Sources */,
+				B569837D253B45DE00FEE479 /* Frameworks */,
+				B569837E253B45DE00FEE479 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Portal_Phone;
+			productName = Portal_Phone;
+			productReference = B5698380253B45DE00FEE479 /* Portal.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B569831B253B437300FEE479 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					B5698322253B437300FEE479 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					B5698338253B452600FEE479 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					B5698341253B452700FEE479 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					B569836A253B45D200FEE479 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1210;
+					};
+					B569837F253B45DE00FEE479 = {
+						CreatedOnToolsVersion = 12.0;
+						LastSwiftMigration = 1210;
+					};
+				};
+			};
+			buildConfigurationList = B569831E253B437300FEE479 /* Build configuration list for PBXProject "PortalHarness" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B569831A253B437300FEE479;
+			productRefGroup = B5698324253B437300FEE479 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5698322253B437300FEE479 /* PortalHarness_Phone */,
+				B5698338253B452600FEE479 /* PortalHarness_Watch */,
+				B5698341253B452700FEE479 /* PortalHarness_Watch Extension */,
+				B569836A253B45D200FEE479 /* Portal_Watch */,
+				B569837F253B45DE00FEE479 /* Portal_Phone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5698321253B437300FEE479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B569832E253B437300FEE479 /* Preview Assets.xcassets in Resources */,
+				B569832B253B437300FEE479 /* Assets.xcassets in Resources */,
+				B503C513253BD42A0058F4A0 /* apple.jpeg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698337253B452600FEE479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B569833C253B452700FEE479 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698340253B452700FEE479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5698355253B452800FEE479 /* Preview Assets.xcassets in Resources */,
+				B5698352253B452800FEE479 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698369253B45D200FEE479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569837E253B45DE00FEE479 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B569831F253B437300FEE479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5698329253B437300FEE479 /* ContentView.swift in Sources */,
+				B5698327253B437300FEE479 /* PortalHarnessApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569833E253B452700FEE479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B569834C253B452700FEE479 /* NotificationController.swift in Sources */,
+				B569834A253B452700FEE479 /* ContentView.swift in Sources */,
+				B5698350253B452700FEE479 /* ComplicationController.swift in Sources */,
+				B5698348253B452700FEE479 /* PortalHarnessApp.swift in Sources */,
+				B569834E253B452700FEE479 /* NotificationView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5698367253B45D200FEE479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B503C4CF253B5B530058F4A0 /* DevicePortal.swift in Sources */,
+				B503C4E8253B67650058F4A0 /* PortalMessageHandler.swift in Sources */,
+				B503C4D0253B5B530058F4A0 /* PortalToPhone.swift in Sources */,
+				B503C4D9253B5C8C0058F4A0 /* PortalMessage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B569837C253B45DE00FEE479 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B503C4D4253B5B5D0058F4A0 /* DevicePortal.swift in Sources */,
+				B503C4E9253B67650058F4A0 /* PortalMessageHandler.swift in Sources */,
+				B503C508253B82940058F4A0 /* PortalToWatch.swift in Sources */,
+				B503C4DA253B5C8C0058F4A0 /* PortalMessage.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B5698345253B452700FEE479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5698341253B452700FEE479 /* PortalHarness_Watch Extension */;
+			targetProxy = B5698344253B452700FEE479 /* PBXContainerItemProxy */;
+		};
+		B5698359253B452800FEE479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5698338253B452600FEE479 /* PortalHarness_Watch */;
+			targetProxy = B5698358253B452800FEE479 /* PBXContainerItemProxy */;
+		};
+		B5698371253B45D200FEE479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B569836A253B45D200FEE479 /* Portal_Watch */;
+			targetProxy = B5698370253B45D200FEE479 /* PBXContainerItemProxy */;
+		};
+		B5698386253B45DE00FEE479 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B569837F253B45DE00FEE479 /* Portal_Phone */;
+			targetProxy = B5698385253B45DE00FEE479 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B5698330253B437300FEE479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B5698331253B437300FEE479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B5698333253B437300FEE479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PortalHarness/Preview Content\"";
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = PortalHarness/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.PortalHarness;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B5698334253B437300FEE479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PortalHarness/Preview Content\"";
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = PortalHarness/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.PortalHarness;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		B569835C253B452800FEE479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PortalHarness_Watch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "PortalHarness_Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.PortalHarness.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		B569835D253B452800FEE479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PortalHarness_Watch Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "PortalHarness_Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.PortalHarness.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		B5698360253B452800FEE479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				IBSC_MODULE = PortalHarness_Watch_Extension;
+				INFOPLIST_FILE = PortalHarness_Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.PortalHarness.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		B5698361253B452800FEE479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				IBSC_MODULE = PortalHarness_Watch_Extension;
+				INFOPLIST_FILE = PortalHarness_Watch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.standalone.PortalHarness.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		B5698375253B45D200FEE479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Portal_Watch/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.standalone.Portal-Watch";
+				PRODUCT_MODULE_NAME = Portal;
+				PRODUCT_NAME = Portal;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Debug;
+		};
+		B5698376253B45D200FEE479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Portal_Watch/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.standalone.Portal-Watch";
+				PRODUCT_MODULE_NAME = Portal;
+				PRODUCT_NAME = Portal;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 7.0;
+			};
+			name = Release;
+		};
+		B569838A253B45DE00FEE479 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Portal_Phone/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.standalone.Portal-Phone";
+				PRODUCT_MODULE_NAME = Portal;
+				PRODUCT_NAME = Portal;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B569838B253B45DE00FEE479 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = YY6CWUX533;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Portal_Phone/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.standalone.Portal-Phone";
+				PRODUCT_MODULE_NAME = Portal;
+				PRODUCT_NAME = Portal;
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B569831E253B437300FEE479 /* Build configuration list for PBXProject "PortalHarness" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5698330253B437300FEE479 /* Debug */,
+				B5698331253B437300FEE479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5698332253B437300FEE479 /* Build configuration list for PBXNativeTarget "PortalHarness_Phone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5698333253B437300FEE479 /* Debug */,
+				B5698334253B437300FEE479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B569835B253B452800FEE479 /* Build configuration list for PBXNativeTarget "PortalHarness_Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B569835C253B452800FEE479 /* Debug */,
+				B569835D253B452800FEE479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B569835F253B452800FEE479 /* Build configuration list for PBXNativeTarget "PortalHarness_Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5698360253B452800FEE479 /* Debug */,
+				B5698361253B452800FEE479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5698374253B45D200FEE479 /* Build configuration list for PBXNativeTarget "Portal_Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5698375253B45D200FEE479 /* Debug */,
+				B5698376253B45D200FEE479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5698389253B45DE00FEE479 /* Build configuration list for PBXNativeTarget "Portal_Phone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B569838A253B45DE00FEE479 /* Debug */,
+				B569838B253B45DE00FEE479 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B569831B253B437300FEE479 /* Project object */;
+}
