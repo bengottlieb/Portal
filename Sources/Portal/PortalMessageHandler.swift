@@ -9,5 +9,5 @@ import Foundation
 
 public protocol PortalMessageHandler {
 	func didReceive(message: PortalMessage)
-	func didReceive(file: URL, metadata: [String: Any]?)
+	func didReceive(file: URL, metadata: [String: Any]?, completion: @escaping () -> Void)
 }

@@ -14,23 +14,29 @@ extension PortalMessage.Kind {
 
 struct ContentView: View {
 	@ObservedObject var portal = PortalToPhone.instance
-	@Binding var image: Image?
-	
+	@EnvironmentObject var router: ImageRouter
+
 	var body: some View {
-		VStack() {
-			if let kind = portal.mostRecentMessage?.kind.rawValue {
-				Text(kind)
-					.padding()
-			}
-			if let image = self.image {
-				image
-			}
-			HStack() {
-				Button("Ping") {
-					PortalToPhone.instance.send(PortalMessage(.ping))
+		ScrollView() {
+			VStack() {
+				if let message = portal.mostRecentMessage {
+					Text(message.description)
+						.padding()
 				}
-				Button("Pong") {
-					PortalToPhone.instance.send(PortalMessage(.pong))
+				if let image = router.image {
+					image
+				}
+				Button("Send Image") {
+					let file = Bundle.main.url(forResource: "apple", withExtension: "jpeg")!
+					PortalToPhone.instance.send(file)
+				}
+				HStack() {
+					Button("Ping") {
+						PortalToPhone.instance.send("message Ping")
+					}
+					Button("Pong") {
+						PortalToPhone.instance.send("Pong message")
+					}
 				}
 			}
 		}
@@ -39,6 +45,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView(image: .constant(nil))
+		ContentView()
 	}
 }

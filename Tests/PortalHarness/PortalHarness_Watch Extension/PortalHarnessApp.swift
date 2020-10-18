@@ -8,16 +8,27 @@
 import SwiftUI
 import Portal
 
+class ImageRouter: ObservableObject {
+	@Published var image: Image?
+}
+
+
 @main
 struct PortalHarnessApp: App, PortalMessageHandler {
-	@State var image: Image?
+	let router = ImageRouter()
+
 	func didReceive(message: PortalMessage) {
 		message.completion?(.success(["success": true]))
 	}
 	
-	func didReceive(file: URL, metadata: [String: Any]?) {
+	func didReceive(file: URL, metadata: [String: Any]?, completion: @escaping () -> Void) {
 		if let image = UIImage(contentsOfFile: file.path) {
-			self.image = Image(uiImage: image)
+			DispatchQueue.main.async {
+				router.image = Image(uiImage: image)
+				completion()
+			}
+		} else {
+			completion()
 		}
 	}
 
@@ -28,7 +39,8 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 	@SceneBuilder var body: some Scene {
 		WindowGroup {
 			NavigationView {
-				ContentView(image: $image)
+				ContentView()
+					.environmentObject(router)
 			}
 		}
 		

@@ -13,7 +13,8 @@ public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator }
 public protocol DevicePortal: class {
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)?)
 	func send(_ file: URL, metadata: [String: Any]?, completion: ((Error?) -> Void)?)
-	
+	func send(_ string: String, completion: ((Error?) -> Void)?)
+
 	var session: WCSession { get }
 	var messageSendError: Error? { get set }
 	var mostRecentMessage: PortalMessage? { get set }
@@ -46,6 +47,11 @@ public extension DevicePortal where Self: WCSessionDelegate {
 			message.completion?(.failure(err))
 			completion?(err)
 		}
+	}
+	
+	func send(_ string: String, completion: ((Error?) -> Void)? = nil) {
+		let message = PortalMessage(.string, [PortalMessage.Kind.string.rawValue: string])
+		send(message, completion: completion)
 	}
 	
 	func session(_ session: WCSession, didReceiveMessage payload: [String : Any]) {

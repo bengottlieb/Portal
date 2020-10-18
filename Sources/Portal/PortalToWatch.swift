@@ -22,12 +22,14 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 	public var messageHandler: PortalMessageHandler?
 	public let session = WCSession.default
 	public var pendingTransfers: [TransferringFile] = []
+	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!)
 
 	override init() {
 		super.init()
 		
 		session.delegate = self
 		session.activate()
+		
 	}
 }
 
@@ -62,7 +64,17 @@ extension PortalToWatch: WCSessionDelegate {
 	}
 
 	public func session(_ session: WCSession, didReceive file: WCSessionFile) {
-		messageHandler?.didReceive(file: file.fileURL, metadata: file.metadata)
+		let cachedLocation = tempFileDirectory.appendingPathComponent("\(UUID().uuidString).\(file.fileURL.pathExtension)")
+		do {
+			try FileManager.default.moveItem(at: file.fileURL, to: cachedLocation)
+			self.messageHandler?.didReceive(file: cachedLocation, metadata: file.metadata) {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+					try? FileManager.default.removeItem(at: cachedLocation)
+				}
+			}
+		} catch {
+			print("Error when copying received file: \(error)")
+		}
 	}
 }
 

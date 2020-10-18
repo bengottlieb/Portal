@@ -14,22 +14,27 @@ extension PortalMessage.Kind {
 
 struct ContentView: View {
 	@ObservedObject var portal = PortalToWatch.instance
+	@EnvironmentObject var router: ImageRouter
+	
 	var body: some View {
 		HStack() {
 			Button("Ping") {
-				PortalToWatch.instance.send(PortalMessage(.ping))
+				PortalToWatch.instance.send("message ping")
 			}
 			Button("Pong") {
-				PortalToWatch.instance.send(PortalMessage(.pong))
+				PortalToWatch.instance.send("pong message")
 			}
 			
+			if let image = router.image {
+				image
+			}
 			Button("Send Image") {
 				let file = Bundle.main.url(forResource: "apple", withExtension: "jpeg")!
 				PortalToWatch.instance.send(file)
 			}
 		}
-		if let kind = portal.mostRecentMessage?.kind.rawValue {
-			Text(kind)
+		if let message = portal.mostRecentMessage {
+			Text(message.description)
 				.padding()
 		}
 	}

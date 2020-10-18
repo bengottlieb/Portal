@@ -36,6 +36,7 @@
 		B5698384253B45DE00FEE479 /* Portal_Phone.h in Headers */ = {isa = PBXBuildFile; fileRef = B5698382253B45DE00FEE479 /* Portal_Phone.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B5698387253B45DE00FEE479 /* Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; };
 		B5698388253B45DE00FEE479 /* Portal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5AC956E253CA05100FC6105 /* apple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B503C512253BD42A0058F4A0 /* apple.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -485,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5698355253B452800FEE479 /* Preview Assets.xcassets in Resources */,
+				B5AC956E253CA05100FC6105 /* apple.jpeg in Resources */,
 				B5698352253B452800FEE479 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
