@@ -6,12 +6,14 @@
 //
 
 #if os(iOS)
+#if canImport(Combine)
 
 import Foundation
 import SwiftUI
 import WatchConnectivity
 import Combine
 
+@available(iOS 13.0, watchOS 7.0, *)
 public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 	public static let instance = PortalToWatch()
 	
@@ -29,6 +31,7 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!)
 }
 
+@available(iOS 13.0, watchOS 7.0, *)
 extension PortalToWatch: WCSessionDelegate {
 	public func sessionDidBecomeInactive(_ session: WCSession) {
 		self.sessionReachabilityDidChange(session)
@@ -91,4 +94,5 @@ extension PortalToWatch: WCSessionDelegate {
 	}
 }
 
+#endif
 #endif

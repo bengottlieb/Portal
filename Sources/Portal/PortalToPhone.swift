@@ -6,6 +6,7 @@
 //
 
 #if os(watchOS)
+#if canImport(Combine)
 
 import Foundation
 import SwiftUI
@@ -13,6 +14,7 @@ import WatchKit
 import WatchConnectivity
 import Combine
 
+@available(iOS 13.0, watchOS 7.0, *)
 public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	public static let instance = PortalToPhone()
 	
@@ -30,6 +32,7 @@ public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!)
 }
 
+@available(iOS 13.0, watchOS 7.0, *)
 extension PortalToPhone: WCSessionDelegate {
 	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 		DispatchQueue.main.async { self.activationError = error }
@@ -83,4 +86,5 @@ extension PortalToPhone: WCSessionDelegate {
 	}
 }
 
+#endif
 #endif
