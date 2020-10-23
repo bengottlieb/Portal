@@ -9,7 +9,7 @@ import Foundation
 
 public typealias SendCallback = (Result<[String: Any], Error>) -> Void
 
-public struct PortalMessage: CustomStringConvertible {
+public struct PortalMessage: CustomStringConvertible, Identifiable {
 	public struct Kind: Equatable {
 		public let rawValue: String
 		public init(rawValue: String) {
@@ -33,11 +33,13 @@ public struct PortalMessage: CustomStringConvertible {
 	public let kind: Kind
 	public let body: [String: Any]?
 	public let completion: SendCallback?
-	
+	public var id: String
+
 	public init(_ kind: Kind, _ body: [String: Any]? = nil, completion: SendCallback? = nil) {
 		self.kind = kind
 		self.body = body
 		self.completion = completion
+		self.id = body?["id"] as? String ?? UUID().uuidString
 	}
 	
 	init?(payload: [String: Any], completion: (([String: Any]) -> Void)?) {
@@ -50,6 +52,7 @@ public struct PortalMessage: CustomStringConvertible {
 		
 		self.kind = Kind(rawValue: kind)
 		self.body = payload["body"] as? [String: Any]
+		self.id = (payload["body"] as? [String: Any])?["id"] as? String ?? UUID().uuidString
 		self.completion = { result in
 			if let success = try? result.get() { completion?(success) }
 		}

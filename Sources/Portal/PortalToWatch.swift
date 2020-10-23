@@ -29,6 +29,7 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 	public var session: WCSession?
 	public var pendingTransfers: [TransferringFile] = []
 	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!)
+	public var isWatchAppInstalled: Bool { session?.isWatchAppInstalled ?? false }
 }
 
 @available(iOS 13.0, watchOS 7.0, *)
