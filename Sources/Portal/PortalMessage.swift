@@ -18,6 +18,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		
 		public static let none = Kind(rawValue: "_none")
 		public static let ping = Kind(rawValue: "_ping")
+		public static let pingResponse = Kind(rawValue: "_pingResponse")
 		public static let string = Kind(rawValue: "_string")
 		
 		public static func ==(lhs: Kind, rhs: Kind) -> Bool { lhs.rawValue == rhs.rawValue }
@@ -33,23 +34,28 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 	public let kind: Kind
 	public let body: [String: Any]?
 	public let completion: SendCallback?
+	public let createdAt: Date
 	public var id: String
+	
+	public static var ping: PortalMessage { PortalMessage(.ping) }
 
 	public init(_ kind: Kind, _ body: [String: Any]? = nil, completion: SendCallback? = nil) {
 		self.kind = kind
 		self.body = body
+		self.createdAt = Date()
 		self.completion = completion
 		self.id = body?["id"] as? String ?? UUID().uuidString
 	}
 	
 	init?(payload: [String: Any], completion: (([String: Any]) -> Void)?) {
-		guard let kind = payload["kind"] as? String else {
+		guard let kind = payload["kind"] as? String, let date = payload["date"] as? TimeInterval else {
 			self.kind = .none
 			self.body = nil
 			self.completion = nil
 			return nil
 		}
 		
+		self.createdAt = Date(timeIntervalSinceReferenceDate: date)
 		self.kind = Kind(rawValue: kind)
 		self.body = payload["body"] as? [String: Any]
 		self.id = (payload["body"] as? [String: Any])?["id"] as? String ?? UUID().uuidString
@@ -59,7 +65,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 	}
 	
 	var payload: [String: Any] {
-		var payload: [String: Any] = ["kind": kind.rawValue]
+		var payload: [String: Any] = ["kind": kind.rawValue, "date": createdAt.timeIntervalSinceReferenceDate]
 		
 		if let body = self.body {
 			payload["body"] = body

@@ -43,6 +43,15 @@ public extension DevicePortal {
 		#endif
 	}
 	
+	func checkLatency(completion: @escaping (Result<TimeInterval, Error>) -> Void) {
+		let started = Date()
+		send(PortalMessage(.ping) { error in
+			completion(.success(abs(started.timeIntervalSinceNow)))
+		}) { error in
+			if let err = error { completion(.failure(err)) }
+		}
+	}
+	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
 		if !self.isActive {
 			completion?(PortalError.sessionIsInactive)
@@ -50,8 +59,9 @@ public extension DevicePortal {
 		}
 		let payload = message.payload
 		let replyHandler: ([String: Any]) -> Void = { reply in message.completion?(.success(reply)) }
+		let noReplyHandler = message.completion == nil && completion == nil
 		
-		session?.sendMessage(payload, replyHandler: message.completion == nil ? nil : replyHandler) { err in
+		session?.sendMessage(payload, replyHandler: noReplyHandler ? nil : replyHandler) { err in
 			DispatchQueue.main.async { self.recentSendError = err }
 			message.completion?(.failure(err))
 			completion?(err)
@@ -91,14 +101,7 @@ public extension DevicePortal where Self: WCSessionDelegate {
 		
 		self.counterpartApplicationContext = session?.receivedApplicationContext
 	}
-	
-	func session(_ session: WCSession, didReceiveMessage payload: [String : Any]) {
-		if let message = PortalMessage(payload: payload, completion: nil) {
-			DispatchQueue.main.async { self.mostRecentMessage = message }
-			self.messageHandler?.didReceive(message: message)
-		}
-	}
-	
+
 	func handleCompleted(file: WCSessionFileTransfer, error: Error?) {
 		if let index = self.pendingTransfers.firstIndex(where: { $0.transfer == file }) {
 			self.pendingTransfers[index].completion?(error)
@@ -109,7 +112,8 @@ public extension DevicePortal where Self: WCSessionDelegate {
 	func handleIncoming(message payload: [String: Any], reply: (([String: Any]) -> Void)? = nil) {
 		if let message = PortalMessage(payload: payload, completion: reply) {
 			DispatchQueue.main.async { self.mostRecentMessage = message }
-			self.messageHandler?.didReceive(message: message)
+			
+			if self.messageHandler?.didReceive(message: message) != true, let rep = reply { rep([ "success": true ]) }
 		} else {
 			reply?(["success": false])
 		}
