@@ -22,7 +22,7 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 	@Published public var mostRecentMessage: PortalMessage?
 	@Published public var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
 	@Published public var counterpartApplicationContext: [String: Any]?
-	@Published public var isReachable = false
+	public var isReachable: Bool { session?.isReachable ?? false }
 	@Published public var isTransferingUserInfo = false
 
 	public var messageHandler: PortalMessageHandler?
@@ -48,9 +48,7 @@ extension PortalToWatch: WCSessionDelegate {
 	}
 	
 	public func sessionReachabilityDidChange(_ session: WCSession) {
-		DispatchQueue.main.async {
-			self.isReachable = session.isReachable
-		}
+		DispatchQueue.main.async { self.objectWillChange.send() }
 	}
 	
 	public func session(_ session: WCSession, didReceiveMessage payload: [String : Any]) {

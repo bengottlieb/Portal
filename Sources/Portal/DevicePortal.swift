@@ -43,9 +43,18 @@ public extension DevicePortal {
 		#endif
 	}
 	
-	func checkLatency(completion: @escaping (Result<TimeInterval, Error>) -> Void) {
+	func checkLatency(payload: [String: Any]? = nil, completion: @escaping (Result<TimeInterval, Error>) -> Void) {
 		let started = Date()
-		send(PortalMessage(.ping) { error in
+		if let body = payload {
+			do {
+				let json = try JSONSerialization.data(withJSONObject: body, options: [])
+				print("Sending \(json.count) bytes")
+			} catch {
+				completion(.failure(error))
+				return
+			}
+		}
+		send(PortalMessage(.ping, payload) { error in
 			completion(.success(abs(started.timeIntervalSinceNow)))
 		}) { error in
 			if let err = error { completion(.failure(err)) }
