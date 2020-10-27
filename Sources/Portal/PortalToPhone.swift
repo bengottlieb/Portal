@@ -30,6 +30,11 @@ public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	public var session: WCSession?
 	public var pendingTransfers: [TransferringFile] = []
 	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true)[0])
+	
+	override init() {
+		super.init()
+		CounterpartPortal = self
+	}
 }
 
 @available(iOS 13.0, watchOS 7.0, *)

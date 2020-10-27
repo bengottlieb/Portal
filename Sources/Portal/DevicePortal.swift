@@ -10,7 +10,11 @@ import WatchConnectivity
 
 public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive }
 
+typealias ErrorHandler = (Error) -> Void
+
 let hashKey = "_hashKey"
+
+public var CounterpartPortal: DevicePortal!
 
 public protocol DevicePortal: class {
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)?)
@@ -67,13 +71,19 @@ public extension DevicePortal {
 			return
 		}
 		let payload = message.payload
-		let replyHandler: ([String: Any]) -> Void = { reply in message.completion?(.success(reply)) }
-		let noReplyHandler = message.completion == nil && completion == nil
+		let errorHandler: ErrorHandler = { err in
+				DispatchQueue.main.async { self.recentSendError = err }
+				message.completion?(.failure(err))
+				completion?(err)
+		}
 		
-		session?.sendMessage(payload, replyHandler: noReplyHandler ? nil : replyHandler) { err in
-			DispatchQueue.main.async { self.recentSendError = err }
-			message.completion?(.failure(err))
-			completion?(err)
+		if message.completion == nil && completion == nil {
+			session?.sendMessage(payload, replyHandler: nil, errorHandler: errorHandler)
+		} else {
+			session?.sendMessage(payload, replyHandler: { result in
+				message.completion?(.success(result))
+				completion?(nil)
+			}, errorHandler: errorHandler)
 		}
 	}
 	
