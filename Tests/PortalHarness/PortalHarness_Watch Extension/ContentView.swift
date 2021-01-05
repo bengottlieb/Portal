@@ -31,11 +31,12 @@ struct ContentView: View {
 				if let image = router.image {
 					image
 				}
+
 				Button("Send Image") {
 					let file = Bundle.main.url(forResource: "apple", withExtension: "jpeg")!
 					PortalToPhone.instance.send(file)
 				}
-				
+
 				Button("Send Context") {
 					portal.applicationContext = ["C": "d"]
 				}
@@ -45,7 +46,7 @@ struct ContentView: View {
 				}
 				HStack() {
 					Button("Ping") {
-						PortalToPhone.instance.send("message Ping")
+						PortalToPhone.instance.send("message Ping") { error in  }
 					}
 					Button("Pong") {
 						PortalToPhone.instance.send("Pong message")

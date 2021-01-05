@@ -18,10 +18,12 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 	
 	func didReceive(userInfo: [String: Any]) {
 		print(userInfo)
+		UserNotificationManager.instance.notify(title: "Notification", body: "Received", when: Date(timeIntervalSinceNow: 1))
 	}
 
 	func didReceive(message: PortalMessage) -> Bool {
 		print(message)
+		UserNotificationManager.instance.notify(title: "Notification", body: "Received", when: Date(timeIntervalSinceNow: 1))
 		message.completion?(.success(["success": true]))
 		return false
 	}
@@ -40,6 +42,7 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 	
 	init() {
 		PortalToWatch.instance.setup(messageHandler: self)
+		UserNotificationManager.instance.setup()
 	}
 	
 	var body: some Scene {

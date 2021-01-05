@@ -23,9 +23,14 @@ struct ContentView: View {
 			if let context = portal.counterpartApplicationContext {
 				Text(context.description)
 			}
+			Button("Notify") {
+				UserNotificationManager.instance.notify(title: "Hello", body: "I'm a notification!", in: 5)
+			}
+
 			Button("Ping") {
 				portal.send("message ping")
 			}
+
 			Button("Pong") {
 				portal.send("pong message")
 			}
