@@ -25,6 +25,7 @@ public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	@Published public var counterpartApplicationContext: [String: Any]?
 	public var isReachable: Bool { session?.isReachable ?? false }
 	@Published public var isTransferingUserInfo = false
+	public var isActive = false
 
 	public var messageHandler: PortalMessageHandler?
 	public var session: WCSession?
@@ -40,7 +41,10 @@ public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 @available(iOS 13.0, watchOS 7.0, *)
 extension PortalToPhone: WCSessionDelegate {
 	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-		DispatchQueue.main.async { self.activationError = error }
+		DispatchQueue.main.async {
+			self.isActive = activationState == .activated
+			self.activationError = error
+		}
 	}
 	
 	public func sessionReachabilityDidChange(_ session: WCSession) {

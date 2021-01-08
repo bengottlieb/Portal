@@ -24,12 +24,12 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 	@Published public var counterpartApplicationContext: [String: Any]?
 	public var isReachable: Bool { session?.isReachable ?? false }
 	@Published public var isTransferingUserInfo = false
+	public var isActive = false
 
 	public var messageHandler: PortalMessageHandler?
 	public var session: WCSession?
 	public var pendingTransfers: [TransferringFile] = []
 	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true).first!)
-	public var isWatchAppInstalled: Bool { session?.isWatchAppInstalled ?? false }
 
 	override init() {
 		super.init()
@@ -40,16 +40,20 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 @available(iOS 13.0, watchOS 7.0, *)
 extension PortalToWatch: WCSessionDelegate {
 	public func sessionDidBecomeInactive(_ session: WCSession) {
+		isActive = false
 		self.sessionReachabilityDidChange(session)
 	}
 	
 	public func sessionDidDeactivate(_ session: WCSession) {
+		isActive = true
 		self.sessionReachabilityDidChange(session)
 	}
 	
 	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-		
-		DispatchQueue.main.async { self.activationError = error }
+		DispatchQueue.main.async {
+			self.isActive = activationState == .activated
+			self.activationError = error
+		}
 	}
 	
 	public func sessionReachabilityDidChange(_ session: WCSession) {

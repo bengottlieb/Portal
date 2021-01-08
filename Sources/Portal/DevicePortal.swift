@@ -30,10 +30,10 @@ public protocol DevicePortal: class {
 
 	var messageHandler: PortalMessageHandler? { get set }
 	var pendingTransfers: [TransferringFile] { get set }
+	var isActive: Bool { get set }
 }
 
 public extension DevicePortal {
-	var isActive: Bool { session?.activationState == WCSessionActivationState.activated }
 	var isReachable: Bool { session?.isReachable == true }
 	
 	func send(_ file: URL, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
