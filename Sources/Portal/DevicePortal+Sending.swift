@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  DevicePortal+Sending.swift
 //  
 //
 //  Created by Ben Gottlieb on 2/2/21.
@@ -8,6 +8,7 @@
 import Foundation
 import WatchConnectivity
 
+@available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
 	func send(_ file: URL, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
 		#if targetEnvironment(simulator)
@@ -70,30 +71,4 @@ public extension DevicePortal {
 		session?.transferUserInfo(userInfo)
 	}
 
-	func handleCompleted(file: WCSessionFileTransfer, error: Error?) {
-		if let index = self.pendingTransfers.firstIndex(where: { $0.transfer == file }) {
-			self.pendingTransfers[index].completion?(error)
-			self.pendingTransfers.remove(at: index)
-		}
-	}
-	
-	func handleIncoming(message payload: [String: Any], reply: (([String: Any]) -> Void)? = nil) {
-		if let message = PortalMessage(payload: payload, completion: reply) {
-			DispatchQueue.main.async { self.mostRecentMessage = message }
-			
-			if self.messageHandler?.didReceive(message: message) != true, let rep = reply {
-				rep([ "success": true ])
-			} else {
-				reply?(["success": false])
-			}
-		} else {
-			reply?(["success": false])
-		}
-	}
-	
-	func received(context: [String: Any]) {
-		var ctx = context
-		ctx.removeValue(forKey: hashKey)
-		DispatchQueue.main.async { self.counterpartApplicationContext = ctx }
-	}
 }

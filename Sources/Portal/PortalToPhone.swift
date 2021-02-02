@@ -15,82 +15,17 @@ import WatchConnectivity
 import Combine
 
 @available(iOS 13.0, watchOS 7.0, *)
-public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
-	public static let instance = PortalToPhone()
-	
-	@Published public var recentSendError: Error?
-	@Published public var mostRecentMessage: PortalMessage?
-	@Published public var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
-	@Published public var counterpartApplicationContext: [String: Any]?
-	@Published public var isTransferingUserInfo = false
-	public var isActive = false
-	public var activationError: Error?
-
-	public var messageHandler: PortalMessageHandler?
-	public var session: WCSession?
-	public var pendingTransfers: [TransferringFile] = []
-	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true)[0])
-	
-	override init() {
-		super.init()
-		CounterpartPortal = self
-	}
-}
-
-@available(iOS 13.0, watchOS 7.0, *)
-extension PortalToPhone: WCSessionDelegate {
-	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-		DispatchQueue.main.async {
-			self.isActive = activationState == .activated
-			self.activationError = error
-			self.sessionReachabilityDidChange(session)
-		}
-	}
-	
-	public func sessionReachabilityDidChange(_ session: WCSession) {
-		DispatchQueue.main.async { self.objectWillChange.send() }
-	}
-	
-	public func session(_ session: WCSession, didReceiveMessage payload: [String : Any]) {
-		handleIncoming(message: payload)
-	}
-	
-	public func session(_ session: WCSession, didReceiveMessage payload: [String : Any], replyHandler: @escaping ([String : Any]) -> Void) {
-		handleIncoming(message: payload, reply: replyHandler)
-	}
-	
-	public func session(_ session: WCSession, didFinish fileTransfer: WCSessionFileTransfer, error: Error?) {
-		self.handleCompleted(file: fileTransfer, error: error)
+public class PortalToPhone: DevicePortal {
+	public static func setup(messageHandler: PortalMessageHandler) {
+		DevicePortal.instance = PortalToPhone(messageHandler: messageHandler)
 	}
 
-	public func session(_ session: WCSession, didReceive file: WCSessionFile) {
-		let cachedLocation = tempFileDirectory.appendingPathComponent("\(UUID().uuidString).\(file.fileURL.pathExtension)")
-		do {
-			try FileManager.default.moveItem(at: file.fileURL, to: cachedLocation)
-			self.messageHandler?.didReceive(file: cachedLocation, metadata: file.metadata) {
-				DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-					try? FileManager.default.removeItem(at: cachedLocation)
-				}
-			}
-		} catch {
-			print("Error when copying received file: \(error)")
+	override public var heartRate: Int? { didSet {
+		if let rate = heartRate {
+			let message = PortalMessage.init(heartRate: rate)
+			send(message)
 		}
-	}
-	
-	public func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
-		self.received(context: applicationContext)
-	}
-	
-	public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
-		self.messageHandler?.didReceive(userInfo: userInfo)
-	}
-	
-	public func session(_ session: WCSession, didFinish userInfoTransfer: WCSessionUserInfoTransfer, error: Error?) {
-		DispatchQueue.main.async {
-			self.isTransferingUserInfo = false
-			if error != nil { self.recentSendError = error }
-		}
-	}
+	}}
 }
 
 #endif

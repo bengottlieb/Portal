@@ -18,6 +18,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		
 		public static let none = Kind(rawValue: "_none")
 		public static let ping = Kind(rawValue: "_ping")
+		public static let heartRate = Kind(rawValue: "_heartRate")
 		public static let pingResponse = Kind(rawValue: "_pingResponse")
 		public static let string = Kind(rawValue: "_string")
 
@@ -64,6 +65,11 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		}
 	}
 	
+	public init(heartRate: Int) {
+		self.init(.heartRate, ["rate": heartRate])
+	}
+
+	public var heartRate: Int? { body?["rate"] as? Int }
 	var payload: [String: Any] {
 		var payload: [String: Any] = ["kind": kind.rawValue, "date": createdAt.timeIntervalSinceReferenceDate]
 		
