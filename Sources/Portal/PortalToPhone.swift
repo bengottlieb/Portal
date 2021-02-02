@@ -22,7 +22,6 @@ public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	@Published public var mostRecentMessage: PortalMessage?
 	@Published public var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
 	@Published public var counterpartApplicationContext: [String: Any]?
-	public var isReachable: Bool { session?.isReachable ?? false }
 	@Published public var isTransferingUserInfo = false
 	public var isActive = false
 	public var activationError: Error?

@@ -35,6 +35,9 @@ public class PortalToWatch: NSObject, ObservableObject, DevicePortal {
 		super.init()
 		CounterpartPortal = self
 	}
+
+	public var isPaired: Bool { session?.isPaired ?? false }
+	public var isWatchAppInstalled: Bool { session?.isWatchAppInstalled ?? false }
 }
 
 @available(iOS 13.0, watchOS 7.0, *)
