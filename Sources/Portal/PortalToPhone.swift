@@ -18,7 +18,6 @@ import Combine
 public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	public static let instance = PortalToPhone()
 	
-	@Published public var activationError: Error?
 	@Published public var recentSendError: Error?
 	@Published public var mostRecentMessage: PortalMessage?
 	@Published public var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
@@ -26,6 +25,7 @@ public class PortalToPhone: NSObject, ObservableObject, DevicePortal {
 	public var isReachable: Bool { session?.isReachable ?? false }
 	@Published public var isTransferingUserInfo = false
 	public var isActive = false
+	public var activationError: Error?
 
 	public var messageHandler: PortalMessageHandler?
 	public var session: WCSession?
@@ -44,6 +44,7 @@ extension PortalToPhone: WCSessionDelegate {
 		DispatchQueue.main.async {
 			self.isActive = activationState == .activated
 			self.activationError = error
+			self.sessionReachabilityDidChange(session)
 		}
 	}
 	

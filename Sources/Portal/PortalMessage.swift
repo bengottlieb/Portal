@@ -20,7 +20,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		public static let ping = Kind(rawValue: "_ping")
 		public static let pingResponse = Kind(rawValue: "_pingResponse")
 		public static let string = Kind(rawValue: "_string")
-		
+
 		public static func ==(lhs: Kind, rhs: Kind) -> Bool { lhs.rawValue == rhs.rawValue }
 	}
 	

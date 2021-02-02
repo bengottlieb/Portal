@@ -132,7 +132,11 @@ public extension DevicePortal where Self: WCSessionDelegate {
 		if let message = PortalMessage(payload: payload, completion: reply) {
 			DispatchQueue.main.async { self.mostRecentMessage = message }
 			
-			if self.messageHandler?.didReceive(message: message) != true, let rep = reply { rep([ "success": true ]) }
+			if self.messageHandler?.didReceive(message: message) != true, let rep = reply {
+				rep([ "success": true ])
+			} else {
+				reply?(["success": false])
+			}
 		} else {
 			reply?(["success": false])
 		}
