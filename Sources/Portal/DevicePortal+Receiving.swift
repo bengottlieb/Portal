@@ -58,22 +58,22 @@ public extension DevicePortal {
 		}
 	}
 
-	func handleIncoming(message payload: [String: Any], reply: (([String: Any]) -> Void)? = nil) {
+	func handleIncoming(message payload: [String: Any], reply: @escaping (([String: Any]) -> Void) = { _ in }) {
 		if let message = PortalMessage(payload: payload, completion: reply) {
 			DispatchQueue.main.async { self.mostRecentMessage = message }
 			
 			if self.handle(builtInMessage: message) {
-				reply?(["success": true])
+				reply(DevicePortal.success)
 				return
 			}
 			
-			if self.messageHandler.didReceive(message: message) != true, let rep = reply {
-				rep([ "success": true ])
+			if let result = self.messageHandler.didReceive(message: message) {
+				reply(result)
 			} else {
-				reply?(["success": false])
+				reply(DevicePortal.failure)
 			}
 		} else {
-			reply?(["success": false])
+			reply(DevicePortal.failure)
 		}
 	}
 	

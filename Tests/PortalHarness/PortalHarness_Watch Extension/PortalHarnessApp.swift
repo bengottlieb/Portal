@@ -21,9 +21,8 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 		print(userInfo)
 	}
 
-	func didReceive(message: PortalMessage) -> Bool {
-		message.completion?(.success(["success": true]))
-		return false
+	func didReceive(message: PortalMessage) -> [String: Any]? {
+		return DevicePortal.success
 	}
 	
 	func didReceive(file: URL, metadata: [String: Any]?, completion: @escaping () -> Void) {

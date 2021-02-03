@@ -21,11 +21,10 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 		UserNotificationManager.instance.notify(title: "Notification", body: "Received", when: Date(timeIntervalSinceNow: 1))
 	}
 
-	func didReceive(message: PortalMessage) -> Bool {
+	func didReceive(message: PortalMessage) -> [String: Any]? {
 		print(message)
 		UserNotificationManager.instance.notify(title: "Notification", body: "Received", when: Date(timeIntervalSinceNow: 1))
-		message.completion?(.success(["success": true]))
-		return false
+		return DevicePortal.success
 	}
 	
 	func didReceive(file: URL, metadata: [String: Any]?, completion: @escaping () -> Void) {
