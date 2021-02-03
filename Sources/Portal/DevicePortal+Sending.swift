@@ -39,11 +39,24 @@ public extension DevicePortal {
 		}
 	}
 	
-	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
+	func canSendMessage(completion: ((Error?) -> Void)?) -> Bool {
 		if !self.isActive {
+			print("Trying to send a message to an inactive counterpart")
 			completion?(PortalError.sessionIsInactive)
-			return
+			return false
 		}
+
+		if !self.isReachable {
+			print("Trying to send a message to an unreachable counterpart")
+			completion?(PortalError.counterpartIsNotReachable)
+			return false
+		}
+		return true
+	}
+	
+	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
+		if !canSendMessage(completion: completion) { return }
+		
 		let payload = message.payload
 		let errorHandler: ErrorHandler = { err in
 				DispatchQueue.main.async { self.recentSendError = err }
@@ -62,11 +75,15 @@ public extension DevicePortal {
 	}
 	
 	func send(_ string: String, completion: ((Error?) -> Void)? = nil) {
+		if !canSendMessage(completion: completion) { return }
+
 		let message = PortalMessage(.string, [PortalMessage.Kind.string.rawValue: string])
 		send(message, completion: completion)
 	}
 	
 	func send(userInfo: [String: Any]) {
+		if !canSendMessage(completion: nil) { return }
+
 		DispatchQueue.main.async { self.isTransferingUserInfo = true }
 		session?.transferUserInfo(userInfo)
 	}
