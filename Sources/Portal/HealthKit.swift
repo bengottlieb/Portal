@@ -10,11 +10,10 @@ import HealthKit
 
 public extension HKStatistics {
 	var heartRate: Int? {
-		guard let quantity = averageQuantity() else { return nil }
-
-		let units = HKUnit.minute().reciprocal()
-		let value = quantity.doubleValue(for: units)
-		return Int(value)
+		let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
+		guard let value = mostRecentQuantity()?.doubleValue(for: heartRateUnit) else { return nil }
+		let roundedValue = Double( round( 1 * value ) / 1 )
+		return Int(roundedValue)
 	}
 }
 
