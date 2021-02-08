@@ -36,6 +36,11 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var isReachable: Bool { session?.isReachable ?? false }
 	public var heartRate: Int? { didSet { objectChanged() }}
 	
+	#if os(iOS)
+		public var isWatchAppInstalled: Bool { false }
+		public var isPaired: Bool { false }
+	#endif
+	
 	init(messageHandler: PortalMessageHandler) {
 		self.messageHandler = messageHandler
 

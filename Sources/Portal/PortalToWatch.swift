@@ -15,8 +15,8 @@ import Combine
 
 @available(iOS 13.0, watchOS 7.0, *)
 public class PortalToWatch: DevicePortal {
-	public var isWatchAppInstalled: Bool { session?.isWatchAppInstalled ?? false }
-	public var isPaired: Bool { session?.isPaired ?? false }
+	public override var isWatchAppInstalled: Bool { session?.isWatchAppInstalled ?? false }
+	public override var isPaired: Bool { session?.isPaired ?? false }
 
 	public static func setup(messageHandler: PortalMessageHandler) {
 		DevicePortal.instance = PortalToWatch(messageHandler: messageHandler)
