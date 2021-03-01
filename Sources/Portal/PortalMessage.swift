@@ -21,6 +21,8 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		public static let heartRate = Kind(rawValue: "_heartRate")
 		public static let pingResponse = Kind(rawValue: "_pingResponse")
 		public static let string = Kind(rawValue: "_string")
+		public static let didResignActive = Kind(rawValue: "_inactive")
+		public static let didBecomeActive = Kind(rawValue: "_active")
 
 		public static func ==(lhs: Kind, rhs: Kind) -> Bool { lhs.rawValue == rhs.rawValue }
 	}

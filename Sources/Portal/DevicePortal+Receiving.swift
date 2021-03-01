@@ -79,6 +79,8 @@ public extension DevicePortal {
 	
 	func received(context: [String: Any]) {
 		var ctx = context
+		if let active = ctx[isActiveKey] as? Bool { self.isCounterpartActive = active }
+		ctx.removeValue(forKey: isActiveKey)
 		ctx.removeValue(forKey: hashKey)
 		DispatchQueue.main.async { self.counterpartApplicationContext = ctx }
 	}

@@ -14,6 +14,7 @@ public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sess
 typealias ErrorHandler = (Error) -> Void
 
 let hashKey = "_hashKey"
+let isActiveKey = "_active"
 
 
 @available(iOS 13.0, watchOS 7.0, *)
@@ -24,8 +25,8 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var messageHandler: PortalMessageHandler
 
 	public var mostRecentMessage: PortalMessage? { didSet { objectChanged() }}
-	public var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
-	public var counterpartApplicationContext: [String: Any]?
+	public internal(set) var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
+	public internal(set) var counterpartApplicationContext: [String: Any]?
 	public var isTransferingUserInfo = false { didSet { objectChanged() }}
 
 	public var activationError: Error? { didSet { objectChanged() }}
@@ -34,6 +35,8 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var pendingTransfers: [TransferringFile] = []
 	public var isActive: Bool { session?.activationState == .activated }
 	public var isReachable: Bool { session?.isReachable ?? false }
+	public internal(set) var isCounterpartActive = false { didSet { objectChanged() }}
+	public var isApplicationActive: Bool? { didSet { if isApplicationActive != oldValue { applicationContextDidChange() }}}
 	public var heartRate: Int? { didSet { objectChanged() }}
 	
 	#if os(iOS)
@@ -54,14 +57,14 @@ public class DevicePortal: NSObject, ObservableObject {
 		session?.delegate = self
 		session?.activate()
 		
-		self.counterpartApplicationContext = session?.receivedApplicationContext
+		if let context = session?.receivedApplicationContext { received(context: context) }
 		return true
 	}
 
 	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true)[0])
 
-	static public let success: [String: Any] = [:]
-	static public let failure: [String: Any] = [:]
+	static public let success: [String: Any] = ["success": "true"]
+	static public let failure: [String: Any] = ["failure": "true"]
 }
 
 @available(iOS 13.0, watchOS 7.0, *)
@@ -93,10 +96,10 @@ extension DevicePortal: WCSessionDelegate {
 	
 	func applicationContextDidChange() {
 		do {
-			if var context = self.applicationContext {
-				context[hashKey] = UUID().uuidString
-				try self.session?.updateApplicationContext(context)
-			}
+			var context = self.applicationContext ?? [:]
+			context[hashKey] = Date().timeIntervalSince1970
+			if let isActive = isApplicationActive { context[isActiveKey] = isActive }
+			try self.session?.updateApplicationContext(context)
 		} catch {
 			DispatchQueue.main.async { self.recentSendError = error }
 		}
