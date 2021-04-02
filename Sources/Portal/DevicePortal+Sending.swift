@@ -54,6 +54,10 @@ public extension DevicePortal {
 		return true
 	}
 	
+	func send(_ messageKind: PortalMessage.Kind, completion: ((Error?) -> Void)? = nil) {
+		self.send(PortalMessage(messageKind), completion: completion)
+	}
+	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
 		if !canSendMessage(completion: completion) { return }
 		
