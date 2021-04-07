@@ -50,6 +50,10 @@ public class DevicePortal: NSObject, ObservableObject {
 		super.init()
 	}
 	
+	public struct Notifications {
+		public static let heartRateReceived = Notification.Name("DevicePortal.heartRateReceived")
+	}
+	
 	@discardableResult
 	public func connect() -> Bool {
 		if !WCSession.isSupported() { return false }

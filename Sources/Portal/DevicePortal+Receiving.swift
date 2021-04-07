@@ -90,6 +90,7 @@ public extension DevicePortal {
 		case .heartRate:
 			if let rate = message.heartRate {
 				self.heartRate = rate
+				DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.heartRateReceived, object: rate) }
 			}
 			return true
 			
