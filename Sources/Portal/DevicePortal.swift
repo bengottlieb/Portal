@@ -87,6 +87,10 @@ extension DevicePortal: WCSessionDelegate {
 		}
 	#endif
 	
+	public func sessionReachabilityDidChange(_ session: WCSession) {
+		self.objectChanged()
+	}
+	
 	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 		DispatchQueue.main.async {
 			self.activationError = error
