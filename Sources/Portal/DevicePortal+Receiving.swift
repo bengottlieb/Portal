@@ -45,7 +45,7 @@ public extension DevicePortal {
 	}
 
 	func session(_ session: WCSession, didReceive file: WCSessionFile) {
-		let cachedLocation = FileManager.uniqueURL(in: tempFileDirectory, base: file.fileName)
+		let cachedLocation = FileManager.default.uniqueURL(in: tempFileDirectory, base: file.fileName)
 		do {
 			try FileManager.default.moveItem(at: file.fileURL, to: cachedLocation)
 			self.messageHandler.didReceive(file: cachedLocation, fileType: file.fileKind, metadata: file.metadata) {
