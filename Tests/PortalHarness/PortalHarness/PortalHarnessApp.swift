@@ -27,7 +27,7 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 		return DevicePortal.success
 	}
 	
-	func didReceive(file: URL, metadata: [String: Any]?, completion: @escaping () -> Void) {
+	func didReceive(file: URL, fileType: PortalFileKind?, metadata: [String: Any]?, completion: @escaping () -> Void) {
 		if let image = UIImage(contentsOfFile: file.path) {
 			DispatchQueue.main.async {
 				router.image = Image(uiImage: image)

@@ -6,7 +6,21 @@
 //
 
 import Foundation
+import Studio
 import WatchConnectivity
+
+@available(iOS 13.0, watchOS 7.0, *)
+extension WCSessionFile {
+	var fileKind: PortalFileKind? {
+		guard let raw = metadata?[DevicePortal.Keys.fileKind] as? String else { return nil }
+		return PortalFileKind(rawValue: raw)
+	}
+	
+	var fileName: String {
+		guard let name = metadata?[DevicePortal.Keys.fileName] as? String else { return fileURL.lastPathComponent }
+		return name
+	}
+}
 
 @available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
@@ -31,10 +45,10 @@ public extension DevicePortal {
 	}
 
 	func session(_ session: WCSession, didReceive file: WCSessionFile) {
-		let cachedLocation = tempFileDirectory.appendingPathComponent("\(UUID().uuidString).\(file.fileURL.pathExtension)")
+		let cachedLocation = FileManager.uniqueURL(in: tempFileDirectory, base: file.fileName)
 		do {
 			try FileManager.default.moveItem(at: file.fileURL, to: cachedLocation)
-			self.messageHandler.didReceive(file: cachedLocation, metadata: file.metadata) {
+			self.messageHandler.didReceive(file: cachedLocation, fileType: file.fileKind, metadata: file.metadata) {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
 					try? FileManager.default.removeItem(at: cachedLocation)
 				}
@@ -79,9 +93,9 @@ public extension DevicePortal {
 	
 	func received(context: [String: Any]) {
 		var ctx = context
-		if let active = ctx[isActiveKey] as? Bool { self.isCounterpartActive = active }
-		ctx.removeValue(forKey: isActiveKey)
-		ctx.removeValue(forKey: hashKey)
+		if let active = ctx[Keys.isActive] as? Bool { self.isCounterpartActive = active }
+		ctx.removeValue(forKey: Keys.isActive)
+		ctx.removeValue(forKey: Keys.hash)
 		DispatchQueue.main.async { self.counterpartApplicationContext = ctx }
 	}
 	

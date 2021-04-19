@@ -8,13 +8,26 @@
 import Foundation
 import WatchConnectivity
 
+public struct PortalFileKind: Equatable {
+	public let rawValue: String
+	public init(rawValue: String) {
+		self.rawValue = rawValue
+	}
+	
+	public static func ==(lhs: PortalFileKind, rhs: PortalFileKind) -> Bool { lhs.rawValue == rhs.rawValue }
+}
+
+
 @available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
-	func send(_ file: URL, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
+	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
+		var meta = metadata ?? [:]
+		if let type = fileType { meta[Keys.fileKind] = type.rawValue }
+		meta[Keys.fileName] = file.lastPathComponent
 		#if targetEnvironment(simulator)
 			completion?(PortalError.fileTransferDoesntWorkInTheSimulator)
 		#else
-			if let transfer = self.session?.transferFile(file, metadata: metadata) {
+			if let transfer = self.session?.transferFile(file, metadata: meta) {
 				let info = TransferringFile(transfer: transfer, completion: completion)
 				pendingTransfers.append(info)
 			}

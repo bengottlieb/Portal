@@ -8,14 +8,11 @@
 import Foundation
 import WatchConnectivity
 import Combine
+import Studio
 
 public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive, counterpartIsNotReachable }
 
 typealias ErrorHandler = (Error) -> Void
-
-let hashKey = "_hashKey"
-let isActiveKey = "_active"
-
 
 @available(iOS 13.0, watchOS 7.0, *)
 public class DevicePortal: NSObject, ObservableObject {
@@ -65,7 +62,7 @@ public class DevicePortal: NSObject, ObservableObject {
 		return true
 	}
 
-	public var tempFileDirectory = URL(fileURLWithPath: NSSearchPathForDirectoriesInDomains(.cachesDirectory, [.userDomainMask], true)[0])
+	public var tempFileDirectory = FileManager.default.temporaryDirectory
 
 	static public let success: [String: Any] = ["success": "true"]
 	static public let failure: [String: Any] = ["failure": "true"]
@@ -105,8 +102,8 @@ extension DevicePortal: WCSessionDelegate {
 	func applicationContextDidChange() {
 		do {
 			var context = self.applicationContext ?? [:]
-			context[hashKey] = Date().timeIntervalSince1970
-			if let isActive = isApplicationActive { context[isActiveKey] = isActive }
+			context[Keys.hash] = Date().timeIntervalSince1970
+			if let isActive = isApplicationActive { context[Keys.isActive] = isActive }
 			try self.session?.updateApplicationContext(context)
 		} catch {
 			DispatchQueue.main.async { self.recentSendError = error }
@@ -121,5 +118,15 @@ public struct TransferringFile: Equatable, Identifiable {
 	
 	public static func ==(lhs: TransferringFile, rhs: TransferringFile) -> Bool {
 		lhs.id == rhs.id
+	}
+}
+
+@available(iOS 13.0, watchOS 7.0, *)
+extension DevicePortal {
+	struct Keys {
+		static let hash = "_hashKey"
+		static let isActive = "_active"
+		static let fileKind = "_kind"
+		static let fileName = "_name"
 	}
 }
