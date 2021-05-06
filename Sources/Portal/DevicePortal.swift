@@ -22,7 +22,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var messageHandler: PortalMessageHandler
 
 	public var mostRecentMessage: PortalMessage? { didSet { objectChanged() }}
-	public internal(set) var applicationContext: [String: Any]? { didSet { applicationContextDidChange() }}
+	public internal(set) var applicationContext: [String: Any]?
 	public internal(set) var counterpartApplicationContext: [String: Any]?
 	public var isTransferingUserInfo = false { didSet { objectChanged() }}
 
@@ -35,6 +35,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	public internal(set) var isCounterpartActive = false { didSet { objectChanged() }}
 	public var isApplicationActive: Bool? { didSet { if isApplicationActive != oldValue { applicationContextDidChange() }}}
 	public var heartRate: Int? { didSet { objectChanged() }}
+	var isContextDirty = false
 	
 	#if os(iOS)
 		public var isWatchAppInstalled: Bool { false }
@@ -57,8 +58,6 @@ public class DevicePortal: NSObject, ObservableObject {
 		session = WCSession.default
 		session?.delegate = self
 		session?.activate()
-		
-		if let context = session?.receivedApplicationContext { received(context: context) }
 		return true
 	}
 
@@ -90,6 +89,12 @@ extension DevicePortal: WCSessionDelegate {
 	
 	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 		DispatchQueue.main.async {
+			self.received(context: session.applicationContext)
+			if self.isContextDirty {
+				self.applicationContextDidChange()
+			}
+
+			if let err = error { print("Failed to activate WCSession: \(err)")}
 			self.activationError = error
 			self.objectChanged()
 		}
@@ -98,13 +103,25 @@ extension DevicePortal: WCSessionDelegate {
 	func objectChanged() {
 		DispatchQueue.main.async { self.objectWillChange.send() }
 	}
+
+	public func set(applicationContext: [String: Any]) {
+		self.applicationContext = applicationContext
+		isContextDirty = true
+		applicationContextDidChange()
+	}
 	
 	func applicationContextDidChange() {
 		do {
+			if !isActive {
+				print("Not active, not updating context")
+				return }
+			print("updating context")
 			var context = self.applicationContext ?? [:]
 			context[Keys.hash] = Date().timeIntervalSince1970
 			if let isActive = isApplicationActive { context[Keys.isActive] = isActive }
-			try self.session?.updateApplicationContext(context)
+			try self.session?.updateApplicationContext(["Hello": "there"])
+//			try self.session?.updateApplicationContext(context)
+			isContextDirty = false
 		} catch {
 			DispatchQueue.main.async { self.recentSendError = error }
 		}
