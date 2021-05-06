@@ -73,19 +73,16 @@ public extension DevicePortal {
 	}
 
 	func handleIncoming(message payload: [String: Any], reply: @escaping (([String: Any]) -> Void) = { _ in }) {
-		if let message = PortalMessage(payload: payload, completion: reply) {
-			DispatchQueue.main.async { self.mostRecentMessage = message }
-			
-			if self.handle(builtInMessage: message) {
-				reply(DevicePortal.success)
-				return
-			}
-			
-			if let result = self.messageHandler.didReceive(message: message) {
-				reply(result)
-			} else {
-				reply(DevicePortal.failure)
-			}
+		let message = PortalMessage(payload: payload, completion: reply)
+		DispatchQueue.main.async { self.mostRecentMessage = message }
+		
+		if self.handle(builtInMessage: message) {
+			reply(DevicePortal.success)
+			return
+		}
+		
+		if let result = self.messageHandler.didReceive(message: message) {
+			reply(result)
 		} else {
 			reply(DevicePortal.failure)
 		}

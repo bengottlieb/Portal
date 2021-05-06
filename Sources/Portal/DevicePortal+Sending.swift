@@ -20,6 +20,10 @@ public struct PortalFileKind: Equatable {
 
 @available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
+	func send(raw dictionary: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+		session?.sendMessage(dictionary, replyHandler: replyHandler, errorHandler: errorHandler)
+	}
+
 	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
 		var meta = metadata ?? [:]
 		if let type = fileType { meta[Keys.fileKind] = type.rawValue }

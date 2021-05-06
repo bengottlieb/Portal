@@ -16,6 +16,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 			self.rawValue = rawValue
 		}
 		
+		public static let unknown = Kind(rawValue: "_unknown")
 		public static let none = Kind(rawValue: "_none")
 		public static let ping = Kind(rawValue: "_ping")
 		public static let heartRate = Kind(rawValue: "_heartRate")
@@ -50,21 +51,23 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		self.id = body?["id"] as? String ?? UUID().uuidString
 	}
 	
-	init?(payload: [String: Any], completion: (([String: Any]) -> Void)?) {
+	init(payload: [String: Any], completion: (([String: Any]) -> Void)?) {
+		self.completion = { result in
+			if let success = try? result.get() { completion?(success) }
+		}
+
 		guard let kind = payload["kind"] as? String, let date = payload["date"] as? TimeInterval else {
-			self.kind = .none
-			self.body = nil
-			self.completion = nil
-			return nil
+			id = UUID().uuidString
+			createdAt = Date()
+			kind = .unknown
+			body = payload
+			return
 		}
 		
 		self.createdAt = Date(timeIntervalSinceReferenceDate: date)
 		self.kind = Kind(rawValue: kind)
 		self.body = payload["body"] as? [String: Any]
 		self.id = (payload["body"] as? [String: Any])?["id"] as? String ?? UUID().uuidString
-		self.completion = { result in
-			if let success = try? result.get() { completion?(success) }
-		}
 	}
 	
 	public init(heartRate: Int) {
