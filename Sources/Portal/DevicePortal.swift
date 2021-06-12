@@ -17,7 +17,8 @@ typealias ErrorHandler = (Error) -> Void
 @available(iOS 13.0, watchOS 7.0, *)
 public class DevicePortal: NSObject, ObservableObject {
 	static public var instance: DevicePortal!
-	
+	static public var cacheContexts = true
+
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
 
@@ -89,7 +90,11 @@ extension DevicePortal: WCSessionDelegate {
 	
 	public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
 		DispatchQueue.main.async {
-			self.received(context: session.applicationContext)
+			var context = session.applicationContext
+			if context.isEmpty, Self.cacheContexts, let cached = self.cachedContext { context = cached }
+			print("Staring context: \(context)")
+
+			self.received(context: context, restoring: true)
 			if self.isContextDirty {
 				self.applicationContextDidChange()
 			}
@@ -119,8 +124,7 @@ extension DevicePortal: WCSessionDelegate {
 			var context = self.applicationContext ?? [:]
 			context[Keys.hash] = Date().timeIntervalSince1970
 			if let isActive = isApplicationActive { context[Keys.isActive] = isActive }
-			try self.session?.updateApplicationContext(["Hello": "there"])
-//			try self.session?.updateApplicationContext(context)
+			try self.session?.updateApplicationContext(context)
 			isContextDirty = false
 		} catch {
 			DispatchQueue.main.async { self.recentSendError = error }

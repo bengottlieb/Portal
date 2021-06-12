@@ -88,12 +88,18 @@ public extension DevicePortal {
 		}
 	}
 	
-	func received(context: [String: Any]) {
+	func received(context: [String: Any], restoring: Bool = false) {
 		var ctx = context
 		if let active = ctx[Keys.isActive] as? Bool { self.isCounterpartActive = active }
 		ctx.removeValue(forKey: Keys.isActive)
 		ctx.removeValue(forKey: Keys.hash)
-		DispatchQueue.main.async { self.counterpartApplicationContext = ctx }
+		if !restoring, DevicePortal.cacheContexts {
+			self.cachedContext = context
+		}
+		DispatchQueue.main.async {
+			self.objectWillChange.send()
+			self.counterpartApplicationContext = ctx
+		}
 	}
 	
 	func handle(builtInMessage message: PortalMessage) -> Bool {
@@ -106,6 +112,27 @@ public extension DevicePortal {
 			return true
 			
 		default: return false
+		}
+	}
+}
+
+@available(iOS 13.0, watchOS 7.0, *)
+extension DevicePortal {
+	static let cachedContextURL = FileManager.cacheURL(at: "watch/cachedContext.json")
+	var cachedContext: [String: Any]? {
+		get {
+			guard let data = try? Data(contentsOf: Self.cachedContextURL) else { return nil }
+			guard let json = try? JSONSerialization.jsonObject(with: data, options: []) else { return nil }
+			return json as? [String: Any]
+		}
+		
+		set {
+			guard let json = newValue else {
+				try? FileManager.default.removeItem(at: Self.cachedContextURL)
+				return
+			}
+			let data = try? JSONSerialization.data(withJSONObject: json, options: [.prettyPrinted])
+			try? data?.write(to: Self.cachedContextURL)
 		}
 	}
 }
