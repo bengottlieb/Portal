@@ -43,7 +43,7 @@ public extension DevicePortal {
 		if let body = payload {
 			do {
 				let json = try JSONSerialization.data(withJSONObject: body, options: [])
-				print("Sending \(json.count) bytes")
+				if DevicePortal.verboseErrorMessages { print("Sending \(json.count) bytes") }
 			} catch {
 				completion(.failure(error))
 				return
@@ -58,13 +58,13 @@ public extension DevicePortal {
 	
 	func canSendMessage(completion: ((Error?) -> Void)?) -> Bool {
 		if !self.isActive {
-			print("Trying to send a message to an inactive counterpart")
+			if DevicePortal.verboseErrorMessages { print("Trying to send a message to an inactive counterpart") }
 			completion?(PortalError.sessionIsInactive)
 			return false
 		}
 
 		if !self.isReachable {
-			print("Trying to send a message to an unreachable counterpart")
+			if DevicePortal.verboseErrorMessages { print("Trying to send a message to an unreachable counterpart") }
 			completion?(PortalError.counterpartIsNotReachable)
 			return false
 		}

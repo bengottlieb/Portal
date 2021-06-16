@@ -18,6 +18,7 @@ typealias ErrorHandler = (Error) -> Void
 public class DevicePortal: NSObject, ObservableObject {
 	static public var instance: DevicePortal!
 	static public var cacheContexts = true
+	static public var verboseErrorMessages = false
 
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
@@ -92,7 +93,7 @@ extension DevicePortal: WCSessionDelegate {
 		DispatchQueue.main.async {
 			var context = session.applicationContext
 			if context.isEmpty, Self.cacheContexts, let cached = self.cachedContext { context = cached }
-			print("Staring context: \(context)")
+			if DevicePortal.verboseErrorMessages { print("Staring context: \(context)") }
 
 			self.received(context: context, restoring: true)
 			if self.isContextDirty {
@@ -117,10 +118,10 @@ extension DevicePortal: WCSessionDelegate {
 	
 	func applicationContextDidChange() {
 		do {
-			if !isActive {
+			if !isActive, DevicePortal.verboseErrorMessages {
 				print("Not active, not updating context")
 				return }
-			print("updating context")
+			if DevicePortal.verboseErrorMessages { print("updating context") }
 			var context = self.applicationContext ?? [:]
 			context[Keys.hash] = Date().timeIntervalSince1970
 			if let isActive = isApplicationActive { context[Keys.isActive] = isActive }
