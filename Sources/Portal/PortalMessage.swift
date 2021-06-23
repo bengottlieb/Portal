@@ -59,7 +59,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		guard let kind = payload["kind"] as? String, let date = payload["date"] as? TimeInterval else {
 			id = UUID().uuidString
 			createdAt = Date()
-			kind = .unknown
+			self.kind = .unknown
 			body = payload
 			return
 		}
