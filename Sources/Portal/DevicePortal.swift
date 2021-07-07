@@ -22,6 +22,7 @@ public class DevicePortal: NSObject, ObservableObject {
 
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
+	public var recentMessages: [LoggedMessage] = []
 
 	public var mostRecentMessage: PortalMessage? { didSet { objectChanged() }}
 	public internal(set) var applicationContext: [String: Any]?
@@ -67,6 +68,15 @@ public class DevicePortal: NSObject, ObservableObject {
 
 	static public let success: [String: Any] = ["success": "true"]
 	static public let failure: [String: Any] = ["failure": "true"]
+	
+	public struct LoggedMessage: Identifiable {
+		let text: String
+		let date: Date
+		public var id: Date { date }
+	}
+	func recordLog(_ message: String, at date: Date = Date()) {
+		recentMessages.append(LoggedMessage(text: message, date: date))
+	}
 }
 
 @available(iOS 13.0, watchOS 7.0, *)

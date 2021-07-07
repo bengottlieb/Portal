@@ -104,6 +104,15 @@ public extension DevicePortal {
 	
 	func handle(builtInMessage message: PortalMessage) -> Bool {
 		switch message.kind {
+		case .logMessage:
+			if let log = message.logMessage {
+				DispatchQueue.main.async {
+					self.objectWillChange.send()
+					self.recordLog(log, at: message.createdAt)
+				}
+			}
+			return true
+				
 		case .heartRate:
 			if let rate = message.heartRate {
 				self.heartRate = rate

@@ -24,6 +24,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		public static let string = Kind(rawValue: "_string")
 		public static let didResignActive = Kind(rawValue: "_inactive")
 		public static let didBecomeActive = Kind(rawValue: "_active")
+		public static let logMessage = Kind(rawValue: "_log")
 
 		public static func ==(lhs: Kind, rhs: Kind) -> Bool { lhs.rawValue == rhs.rawValue }
 	}
@@ -69,6 +70,11 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		self.body = payload["body"] as? [String: Any]
 		self.id = (payload["body"] as? [String: Any])?["id"] as? String ?? UUID().uuidString
 	}
+
+	public init(log: String) {
+		self.init(.logMessage, ["log": log])
+	}
+	public var logMessage: String? { body?["log"] as? String }
 	
 	public init(heartRate: Int) {
 		self.init(.heartRate, ["rate": heartRate])

@@ -74,9 +74,15 @@ public extension DevicePortal {
 	func send(_ messageKind: PortalMessage.Kind, completion: ((Error?) -> Void)? = nil) {
 		self.send(PortalMessage(messageKind), completion: completion)
 	}
+
+	func send(_ log: String) {
+		self.send(PortalMessage(log: log))
+	}
 	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
-		if !canSendMessage(completion: completion) { return }
+		if !canSendMessage(completion: completion) {
+			print("Can't send message \(message.kind)")
+			return }
 		
 		let payload = message.payload
 		let errorHandler: ErrorHandler = { err in
@@ -93,13 +99,6 @@ public extension DevicePortal {
 				completion?(nil)
 			}, errorHandler: errorHandler)
 		}
-	}
-	
-	func send(_ string: String, completion: ((Error?) -> Void)? = nil) {
-		if !canSendMessage(completion: completion) { return }
-
-		let message = PortalMessage(.string, [PortalMessage.Kind.string.rawValue: string])
-		send(message, completion: completion)
 	}
 	
 	func send(userInfo: [String: Any]) {
