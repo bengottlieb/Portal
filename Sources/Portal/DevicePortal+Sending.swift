@@ -38,21 +38,25 @@ public extension DevicePortal {
 		#endif
 	}
 	
-	func checkLatency(payload: [String: Any]? = nil, completion: @escaping (Result<TimeInterval, Error>) -> Void) {
+	func checkLatency(payload: [String: Any]? = nil, completion: ((Result<TimeInterval, Error>) -> Void)? = nil) {
 		let started = Date()
 		if let body = payload {
 			do {
 				let json = try JSONSerialization.data(withJSONObject: body, options: [])
 				if DevicePortal.verboseErrorMessages { print("Sending \(json.count) bytes") }
 			} catch {
-				completion(.failure(error))
+				completion?(.failure(error))
 				return
 			}
 		}
 		send(PortalMessage(.ping, payload) { error in
-			completion(.success(abs(started.timeIntervalSinceNow)))
+			let time = abs(started.timeIntervalSinceNow)
+			DispatchQueue.main.async {
+				self.lastReportedLatency = time
+			}
+			completion?(.success(time))
 		}) { error in
-			if let err = error { completion(.failure(err)) }
+			if let err = error { completion?(.failure(err)) }
 		}
 	}
 	
@@ -84,6 +88,7 @@ public extension DevicePortal {
 			print("Can't send message \(message.kind)")
 			return }
 		
+		if logOutgoingMessages { recordLog(message.kind.rawValue, kind: .outgoing) }
 		let payload = message.payload
 		let errorHandler: ErrorHandler = { err in
 				DispatchQueue.main.async { self.recentSendError = err }

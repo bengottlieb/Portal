@@ -75,7 +75,8 @@ public extension DevicePortal {
 	func handleIncoming(message payload: [String: Any], reply: @escaping (([String: Any]) -> Void) = { _ in }) {
 		let message = PortalMessage(payload: payload, completion: reply)
 		DispatchQueue.main.async { self.mostRecentMessage = message }
-		
+		if logIncomingMessages { recordLog(message.kind.rawValue, kind: .incoming) }
+
 		if self.handle(builtInMessage: message) {
 			reply(DevicePortal.success)
 			return
@@ -104,6 +105,9 @@ public extension DevicePortal {
 	
 	func handle(builtInMessage message: PortalMessage) -> Bool {
 		switch message.kind {
+		case .ping:
+			return true
+			
 		case .logMessage:
 			if let log = message.logMessage {
 				DispatchQueue.main.async {

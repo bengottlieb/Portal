@@ -19,10 +19,14 @@ public class DevicePortal: NSObject, ObservableObject {
 	static public var instance: DevicePortal!
 	static public var cacheContexts = true
 	static public var verboseErrorMessages = false
-
+	
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
 	public var recentMessages: [LoggedMessage] = []
+	
+	@Published public var logOutgoingMessages = false
+	@Published public var logIncomingMessages = false
+	@Published public var lastReportedLatency: TimeInterval?
 
 	public var mostRecentMessage: PortalMessage? { didSet { objectChanged() }}
 	public internal(set) var applicationContext: [String: Any]?
@@ -69,13 +73,16 @@ public class DevicePortal: NSObject, ObservableObject {
 	static public let success: [String: Any] = ["success": "true"]
 	static public let failure: [String: Any] = ["failure": "true"]
 	
+	public enum MessageKind { case incoming, outgoing, log }
 	public struct LoggedMessage: Identifiable {
-		let text: String
-		let date: Date
+		public let text: String
+		public let date: Date
 		public var id: Date { date }
+		public var kind: MessageKind
 	}
-	func recordLog(_ message: String, at date: Date = Date()) {
-		recentMessages.append(LoggedMessage(text: message, date: date))
+
+	public func recordLog(_ message: String, at date: Date = Date(), kind: MessageKind = .log) {
+		recentMessages.append(LoggedMessage(text: message, date: date, kind: kind))
 	}
 }
 
