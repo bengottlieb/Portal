@@ -8,25 +8,14 @@
 import SwiftUI
 
 @available(iOS 14.0, watchOS 7.0, *)
-public protocol PortalConsoleViewSource: ObservableObject {
-	var messages: [DevicePortal.LoggedMessage] { get }
-}
-
-@available(iOS 14.0, watchOS 7.0, *)
-extension DevicePortal: PortalConsoleViewSource {
-	public var messages: [DevicePortal.LoggedMessage] { recentMessages }
-}
-
-@available(iOS 14.0, watchOS 7.0, *)
-public struct PortalConsoleView<Source: PortalConsoleViewSource>: View {
-	@ObservedObject var source: Source
+public struct PortalConsoleView: View {
+	@ObservedObject var source = DevicePortal.instance
 	@State var collapsed = false
 	let maxLineCount: Int?
 	let showControls: Bool
 
-	public init(source: Source, maxLineCount: Int? = 4, includingControls: Bool? = nil) {
+	public init(maxLineCount: Int? = 4, includingControls: Bool? = nil) {
 		self.maxLineCount = maxLineCount
-		self.source = source
 		
 		if let include = includingControls {
 			showControls = include
@@ -40,7 +29,7 @@ public struct PortalConsoleView<Source: PortalConsoleViewSource>: View {
 	}
 	
 	var messages: [DevicePortal.LoggedMessage] {
-		let all = source.messages
+		let all = source.recentMessages
 		guard let count = maxLineCount, count < all.count, !all.isEmpty else { return all }
 		
 		return Array(all[all.count - count..<all.count])
@@ -78,15 +67,6 @@ public struct PortalConsoleView<Source: PortalConsoleViewSource>: View {
 		.background(Color.black)
 		.foregroundColor(.green)
 		.cornerRadius(5)
-	}
-}
-
-@available(iOS 14.0, watchOS 7.0, *)
-extension PortalConsoleView where Source == DevicePortal {
-	public init(maxLineCount: Int? = 4, includingControls: Bool = true) {
-		source = DevicePortal.instance!
-		self.maxLineCount = maxLineCount
-		self.showControls = includingControls
 	}
 }
 
