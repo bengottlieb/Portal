@@ -1,5 +1,5 @@
 //
-//  PortalLogView.swift
+//  PortalConsoleView.swift
 //  
 //
 //  Created by Ben Gottlieb on 7/7/21.
@@ -8,18 +8,19 @@
 import SwiftUI
 
 @available(iOS 14.0, watchOS 7.0, *)
-public protocol PortalLogViewSource: ObservableObject {
+public protocol PortalConsoleViewSource: ObservableObject {
 	var messages: [DevicePortal.LoggedMessage] { get }
 }
 
 @available(iOS 14.0, watchOS 7.0, *)
-extension DevicePortal: PortalLogViewSource {
+extension DevicePortal: PortalConsoleViewSource {
 	public var messages: [DevicePortal.LoggedMessage] { recentMessages }
 }
 
 @available(iOS 14.0, watchOS 7.0, *)
-public struct PortalLogView<Source: PortalLogViewSource>: View {
+public struct PortalConsoleView<Source: PortalConsoleViewSource>: View {
 	@ObservedObject var source: Source
+	@State var collapsed = false
 	let maxLineCount: Int?
 	let showControls: Bool
 
@@ -48,28 +49,31 @@ public struct PortalLogView<Source: PortalLogViewSource>: View {
 	let distantFuture = Date.distantFuture
 	public var body: some View {
 		VStack(spacing: 0) {
-			ScrollViewReader() { scroll in
-				ScrollView() {
-					VStack(spacing: 0) {
-						ForEach(messages) { message in
-							Text(message.text).id(message.id)
-								.frame(maxWidth: .infinity, alignment: .leading)
-								.font(.system(size: 12, design: .monospaced))
+			if !collapsed {
+				ScrollViewReader() { scroll in
+					ScrollView() {
+						VStack(spacing: 0) {
+							ForEach(messages) { message in
+								Text(message.text).id(message.id)
+									.frame(maxWidth: .infinity, alignment: .leading)
+									.font(.system(size: 12, design: .monospaced))
+							}
+							Color.black
+								.frame(height: 2)
+								.id(distantFuture)
 						}
-						Color.black
-							.frame(height: 2)
-							.id(distantFuture)
+						.frame(maxWidth: .infinity, alignment: .leading)
+						.padding(4)
 					}
-					.frame(maxWidth: .infinity, alignment: .leading)
-					.padding(4)
-				}
-				.onReceive(source.objectWillChange) { _ in
-					withAnimation(.linear(duration: 0.1)) {
-						scroll.scrollTo(distantFuture, anchor: .bottom)
+					.onReceive(source.objectWillChange) { _ in
+						withAnimation(.linear(duration: 0.1)) {
+							scroll.scrollTo(distantFuture, anchor: .bottom)
+						}
 					}
 				}
+				.frame(height: 240)
 			}
-			if showControls { PortalControlsBar() }
+			if showControls { PortalControlsBar(collapsed: $collapsed) }
 		}
 		.background(Color.black)
 		.foregroundColor(.green)
@@ -78,7 +82,7 @@ public struct PortalLogView<Source: PortalLogViewSource>: View {
 }
 
 @available(iOS 14.0, watchOS 7.0, *)
-extension PortalLogView where Source == DevicePortal {
+extension PortalConsoleView where Source == DevicePortal {
 	public init(maxLineCount: Int? = 4, includingControls: Bool = true) {
 		source = DevicePortal.instance!
 		self.maxLineCount = maxLineCount
@@ -87,8 +91,8 @@ extension PortalLogView where Source == DevicePortal {
 }
 
 @available(iOS 14.0, watchOS 7.0, *)
-struct PortalLogView_Previews: PreviewProvider {
+struct PortalConsoleView_Previews: PreviewProvider {
 	static var previews: some View {
-		PortalLogView()
+		PortalConsoleView()
 	}
 }
