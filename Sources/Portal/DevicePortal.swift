@@ -19,7 +19,8 @@ public class DevicePortal: NSObject, ObservableObject {
 	static public var instance: DevicePortal!
 	static public var cacheContexts = true
 	static public var verboseErrorMessages = false
-	
+	public var previouslyReachable = false
+
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
 	public var recentMessages: [LoggedMessage] = []
@@ -57,6 +58,8 @@ public class DevicePortal: NSObject, ObservableObject {
 	
 	public struct Notifications {
 		public static let heartRateReceived = Notification.Name("DevicePortal.heartRateReceived")
+		public static let lostConnection = Notification.Name("DevicePortal.lostConnection")
+		public static let restoredConnection = Notification.Name("DevicePortal.restoredConnection")
 	}
 	
 	@discardableResult
@@ -124,6 +127,13 @@ extension DevicePortal: WCSessionDelegate {
 	}
 	
 	func objectChanged() {
+		if previouslyReachable, !isReachable {
+			DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.lostConnection, object: nil) }
+		} else if !previouslyReachable, isReachable {
+			DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.restoredConnection, object: nil) }
+		}
+		previouslyReachable = isReachable
+
 		DispatchQueue.main.async { self.objectWillChange.send() }
 	}
 
