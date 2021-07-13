@@ -29,10 +29,7 @@ public struct PortalConsoleView: View {
 	}
 	
 	var messages: [DevicePortal.LoggedMessage] {
-		let all = source.recentMessages
-		guard let count = maxLineCount, count < all.count, !all.isEmpty else { return all }
-		
-		return Array(all[all.count - count..<all.count])
+		source.recentMessages
 	}
 
 	let distantFuture = Date.distantFuture
