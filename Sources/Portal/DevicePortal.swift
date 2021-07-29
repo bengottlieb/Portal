@@ -128,9 +128,9 @@ extension DevicePortal: WCSessionDelegate {
 	
 	func objectChanged() {
 		if previouslyReachable, !isReachable {
-			DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.lostConnection, object: nil) }
+			DispatchQueue.main.async { DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.lostConnection, object: nil) } }
 		} else if !previouslyReachable, isReachable {
-			DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.restoredConnection, object: nil) }
+			DispatchQueue.main.async { DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.restoredConnection, object: nil) } }
 		}
 		previouslyReachable = isReachable
 
