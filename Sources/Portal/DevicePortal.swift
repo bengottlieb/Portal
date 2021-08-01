@@ -163,7 +163,7 @@ extension DevicePortal: WCSessionDelegate {
 public struct TransferringFile: Equatable, Identifiable {
 	public let id = UUID()
 	let transfer: WCSessionFileTransfer
-	let completion: ((Error?) -> Void)?
+	let completion: ErrorCallback?
 	
 	public static func ==(lhs: TransferringFile, rhs: TransferringFile) -> Bool {
 		lhs.id == rhs.id

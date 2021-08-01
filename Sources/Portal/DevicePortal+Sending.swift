@@ -5,7 +5,7 @@
 //  Created by Ben Gottlieb on 2/2/21.
 //
 
-import Foundation
+import Suite
 import WatchConnectivity
 
 public struct PortalFileKind: Equatable {
@@ -24,7 +24,7 @@ public extension DevicePortal {
 		session?.sendMessage(dictionary, replyHandler: replyHandler, errorHandler: errorHandler)
 	}
 
-	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
+	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ErrorCallback? = nil) {
 		var meta = metadata ?? [:]
 		if let type = fileType { meta[Keys.fileKind] = type.rawValue }
 		meta[Keys.fileName] = file.lastPathComponent
@@ -60,7 +60,7 @@ public extension DevicePortal {
 		}
 	}
 	
-	func canSendMessage(completion: ((Error?) -> Void)?) -> Bool {
+	func canSendMessage(completion: ErrorCallback?) -> Bool {
 		if !self.isActive {
 			if DevicePortal.verboseErrorMessages { print("Trying to send a message to an inactive counterpart") }
 			completion?(PortalError.sessionIsInactive)
@@ -75,7 +75,7 @@ public extension DevicePortal {
 		return true
 	}
 	
-	func send(_ messageKind: PortalMessage.Kind, completion: ((Error?) -> Void)? = nil) {
+	func send(_ messageKind: PortalMessage.Kind, completion: ErrorCallback? = nil) {
 		self.send(PortalMessage(messageKind), completion: completion)
 	}
 
@@ -83,7 +83,7 @@ public extension DevicePortal {
 		self.send(PortalMessage(log: log))
 	}
 	
-	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
+	func send(_ message: PortalMessage, completion: ErrorCallback? = nil) {
 		if !canSendMessage(completion: completion) {
 			print("Can't send message \(message.kind)")
 			return }
