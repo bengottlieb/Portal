@@ -5,7 +5,7 @@
 //  Created by Ben Gottlieb on 2/2/21.
 //
 
-import Suite
+import Foundation
 import WatchConnectivity
 
 public struct PortalFileKind: Equatable {
@@ -20,11 +20,11 @@ public struct PortalFileKind: Equatable {
 
 @available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
-	func send(raw dictionary: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil, errorHandler: ((Error) -> Void)? = nil) {
+	func send(raw dictionary: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil, errorHandler: ((Error?) -> Void)? = nil) {
 		session?.sendMessage(dictionary, replyHandler: replyHandler, errorHandler: errorHandler)
 	}
 
-	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ErrorCallback? = nil) {
+	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
 		var meta = metadata ?? [:]
 		if let type = fileType { meta[Keys.fileKind] = type.rawValue }
 		meta[Keys.fileName] = file.lastPathComponent
@@ -60,7 +60,7 @@ public extension DevicePortal {
 		}
 	}
 	
-	func canSendMessage(completion: ErrorCallback?) -> Bool {
+	func canSendMessage(completion: ((Error) -> Void)?) -> Bool {
 		if !self.isActive {
 			if DevicePortal.verboseErrorMessages { print("Trying to send a message to an inactive counterpart") }
 			completion?(PortalError.sessionIsInactive)
@@ -75,7 +75,7 @@ public extension DevicePortal {
 		return true
 	}
 	
-	func send(_ messageKind: PortalMessage.Kind, completion: ErrorCallback? = nil) {
+	func send(_ messageKind: PortalMessage.Kind, completion: ((Error?) -> Void)? = nil) {
 		self.send(PortalMessage(messageKind), completion: completion)
 	}
 
@@ -83,7 +83,7 @@ public extension DevicePortal {
 		self.send(PortalMessage(log: log))
 	}
 	
-	func send(_ message: PortalMessage, completion: ErrorCallback? = nil) {
+	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
 		if !canSendMessage(completion: completion) {
 			print("Can't send message \(message.kind)")
 			return }
