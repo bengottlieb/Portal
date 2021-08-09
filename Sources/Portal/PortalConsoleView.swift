@@ -52,8 +52,10 @@ public struct PortalConsoleView: View {
 						.padding(4)
 					}
 					.onReceive(source.objectWillChange) { _ in
-						withAnimation(.linear(duration: 0.1)) {
-							scroll.scrollTo(distantFuture, anchor: .bottom)
+						DispatchQueue.main.async {
+							withAnimation(.linear(duration: 0.1)) {
+								scroll.scrollTo(distantFuture, anchor: .bottom)
+							}
 						}
 					}
 				}

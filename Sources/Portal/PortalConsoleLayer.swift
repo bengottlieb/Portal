@@ -18,6 +18,7 @@ class ConsoleManager: ObservableObject {
 public struct PortalConsoleLayer: View {
 	@State var yOffset: CGFloat = 0
 	@State var dragOffset: CGFloat = 0
+	@State var isDraggable = false
 	
 	public static var showConsole: Bool {
 		get { ConsoleManager.instance.showConsole }
@@ -40,12 +41,15 @@ public struct PortalConsoleLayer: View {
 					
 					PortalConsoleView()
 						.padding()
-						.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global).onChanged { value in
-							dragOffset = value.translation.height
-						}.onEnded { value in
-							yOffset += dragOffset
-							dragOffset = 0
-						})
+						.padding(.bottom, 60)
+						.if(isDraggable) { v in v
+							.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global).onChanged { value in
+								dragOffset = value.translation.height
+							}.onEnded { value in
+								yOffset += dragOffset
+								dragOffset = 0
+							})
+						}
 						.offset(y: yOffset + dragOffset)
 				}
 			}
