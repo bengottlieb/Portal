@@ -39,18 +39,23 @@ public struct PortalConsoleLayer: View {
 				VStack() {
 					Spacer()
 					
-					PortalConsoleView()
-						.padding()
-						.padding(.bottom, 60)
-						.if(isDraggable) { v in v
+					if isDraggable {
+						PortalConsoleView()
+							.padding()
+							.padding(.bottom, 60)
 							.gesture(DragGesture(minimumDistance: 0, coordinateSpace: .global).onChanged { value in
 								dragOffset = value.translation.height
 							}.onEnded { value in
 								yOffset += dragOffset
 								dragOffset = 0
 							})
-						}
-						.offset(y: yOffset + dragOffset)
+							.offset(y: yOffset + dragOffset)
+					} else {
+						PortalConsoleView()
+							.padding()
+							.padding(.bottom, 60)
+							.offset(y: yOffset + dragOffset)
+					}
 				}
 			}
 		}
