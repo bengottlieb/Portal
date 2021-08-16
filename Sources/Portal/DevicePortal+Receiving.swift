@@ -106,6 +106,9 @@ public extension DevicePortal {
 	func handle(builtInMessage message: PortalMessage) -> Bool {
 		switch message.kind {
 		case .ping:
+			DispatchQueue.main.async {
+				NotificationCenter.default.post(name: Notifications.pingReceived, object: nil)
+			}
 			return true
 			
 		case .logMessage:

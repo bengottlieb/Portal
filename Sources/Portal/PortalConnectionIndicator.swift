@@ -11,6 +11,7 @@ import SwiftUI
 public struct PortalConnectionIndicator: View {
 	@ObservedObject var portal = DevicePortal.instance
 
+	@State var scale: CGFloat = 1.0
 	public init() { }
 	public var body: some View {
 		Circle()
@@ -19,10 +20,19 @@ public struct PortalConnectionIndicator: View {
 			.frame(width: 50, height: 50)
 			.background(Color.white.opacity(0.1))
 			.clipShape(Circle())
+			.scaleEffect(scale)
 			.onTapGesture {
 				PortalConsoleLayer.showConsole.toggle()
 			}
 			.zIndex(101)
+			.onReceive(NotificationCenter.default.publisher(for: DevicePortal.Notifications.pingReceived)) { _ in
+				let duration = 0.25
+				withAnimation(.linear(duration: duration)) { scale = 2.0 }
+				
+				DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+					withAnimation(.linear(duration: duration)) { scale = 1.0 }
+				}
+			}
 	}
 }
 

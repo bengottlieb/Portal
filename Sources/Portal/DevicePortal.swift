@@ -10,7 +10,7 @@ import WatchConnectivity
 import Combine
 import Studio
 
-public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive, counterpartIsNotReachable }
+public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive, counterpartIsNotReachable, sessionIsMissing, cantSendMessage }
 
 typealias ErrorHandler = (Error) -> Void
 
@@ -24,6 +24,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
 	public var recentMessages: [LoggedMessage] = []
+	public var pingTimer: Timer?
 	
 	@Published public var logOutgoingMessages = false
 	@Published public var logIncomingMessages = false
@@ -60,6 +61,7 @@ public class DevicePortal: NSObject, ObservableObject {
 		public static let heartRateReceived = Notification.Name("DevicePortal.heartRateReceived")
 		public static let lostConnection = Notification.Name("DevicePortal.lostConnection")
 		public static let restoredConnection = Notification.Name("DevicePortal.restoredConnection")
+		public static let pingReceived = Notification.Name("DevicePortal.pingReceived")
 	}
 	
 	@discardableResult

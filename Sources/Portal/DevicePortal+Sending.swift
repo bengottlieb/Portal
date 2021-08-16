@@ -20,8 +20,28 @@ public struct PortalFileKind: Equatable {
 
 @available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
+	func startPinging(interval: TimeInterval = 1.0) {
+		DispatchQueue.main.async {
+			self.pingTimer?.invalidate()
+			
+			self.pingTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _  in
+				if self.isReachable { self.send(PortalMessage(.ping)) }
+			}
+		}
+	}
+	
+	func stopPinging() {
+		DispatchQueue.main.async {
+			self.pingTimer?.invalidate()
+		}
+	}
+	
 	func send(raw dictionary: [String: Any], replyHandler: (([String: Any]) -> Void)? = nil, errorHandler: ((Error?) -> Void)? = nil) {
-		session?.sendMessage(dictionary, replyHandler: replyHandler, errorHandler: errorHandler)
+		guard let session = session else {
+			errorHandler?(PortalError.sessionIsMissing)
+			return
+		}
+		session.sendMessage(dictionary, replyHandler: replyHandler, errorHandler: errorHandler)
 	}
 
 	func send(_ file: URL, fileType: PortalFileKind? = nil, metadata: [String: Any]? = nil, completion: ((Error?) -> Void)? = nil) {
@@ -84,8 +104,9 @@ public extension DevicePortal {
 	}
 	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
-		if !canSendMessage(completion: completion) {
+		guard let session = self.session, canSendMessage(completion: completion) else {
 			print("Can't send message \(message.kind)")
+			completion?(self.session == nil ? PortalError.sessionIsMissing : PortalError.cantSendMessage)
 			return }
 		
 		if logOutgoingMessages { recordLog(message.kind.rawValue, kind: .outgoing) }
@@ -97,9 +118,9 @@ public extension DevicePortal {
 		}
 		
 		if message.completion == nil && completion == nil {
-			session?.sendMessage(payload, replyHandler: nil, errorHandler: errorHandler)
+			session.sendMessage(payload, replyHandler: nil, errorHandler: errorHandler)
 		} else {
-			session?.sendMessage(payload, replyHandler: { result in
+			session.sendMessage(payload, replyHandler: { result in
 				message.completion?(.success(result))
 				completion?(nil)
 			}, errorHandler: errorHandler)
@@ -107,10 +128,10 @@ public extension DevicePortal {
 	}
 	
 	func send(userInfo: [String: Any]) {
-		if !canSendMessage(completion: nil) { return }
+		guard let session = session, canSendMessage(completion: nil) else { return }
 
 		DispatchQueue.main.async { self.isTransferingUserInfo = true }
-		session?.transferUserInfo(userInfo)
+		session.transferUserInfo(userInfo)
 	}
 
 }
