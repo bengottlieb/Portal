@@ -73,12 +73,14 @@ public extension DevicePortal {
 	}
 
 	func handleIncoming(message payload: [String: Any], reply: @escaping (([String: Any]) -> Void) = { _ in }) {
+		self.processingIncomingMessage = true
 		let message = PortalMessage(payload: payload, completion: reply)
 		DispatchQueue.main.async { self.mostRecentMessage = message }
 		if logIncomingMessages { recordLog(message.kind.rawValue, kind: .incoming) }
 
 		if self.handle(builtInMessage: message) {
 			reply(DevicePortal.success)
+			self.processingIncomingMessage = false
 			return
 		}
 		
@@ -87,6 +89,7 @@ public extension DevicePortal {
 		} else {
 			reply(DevicePortal.failure)
 		}
+		self.processingIncomingMessage = false
 	}
 	
 	func received(context: [String: Any], restoring: Bool = false) {

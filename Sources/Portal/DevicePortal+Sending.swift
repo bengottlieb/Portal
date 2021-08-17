@@ -104,6 +104,13 @@ public extension DevicePortal {
 	}
 	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
+		if processingIncomingMessage {
+			print("\(Date()) Still processing incoming, retrying in 0.1")
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+				self.send(message, completion: completion)
+				return
+			}
+		}
 		guard let session = self.session, canSendMessage(completion: completion) else {
 			print("Can't send message \(message.kind)")
 			completion?(self.session == nil ? PortalError.sessionIsMissing : PortalError.cantSendMessage)

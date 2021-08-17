@@ -45,6 +45,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var isApplicationActive: Bool? { didSet { if isApplicationActive != oldValue { applicationContextDidChange() }}}
 	public var heartRate: Int? { didSet { objectChanged() }}
 	var isContextDirty = false
+	var processingIncomingMessage = false
 	
 	#if os(iOS)
 		public var isWatchAppInstalled: Bool { false }
