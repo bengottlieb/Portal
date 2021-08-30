@@ -90,4 +90,18 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		
 		return payload
 	}
+	
+	public init?<Payload: Codable>(kind: Kind, payload: Payload) {
+		do {
+			let json = try CodableWrapper(body: payload).asJSON()
+			self.init(kind, json)
+		} catch {
+			print("Failed to encode: \(error)")
+			return nil
+		}
+	}
+
+	public struct CodableWrapper<Payload: Codable>: Codable {
+		public let body: Payload
+	}
 }
