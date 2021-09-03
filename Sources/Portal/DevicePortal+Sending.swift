@@ -105,7 +105,7 @@ public extension DevicePortal {
 	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
 		if processingIncomingMessage {
-			print("\(Date()) Still processing incoming, retrying in 0.1")
+			print("\(Date()) Still processing incoming (\(lastMessageKind)), retrying in 0.1")
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 				self.send(message, completion: completion)
 				return

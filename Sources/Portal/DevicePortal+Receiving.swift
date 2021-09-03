@@ -78,6 +78,7 @@ public extension DevicePortal {
 		DispatchQueue.main.async { self.mostRecentMessage = message }
 		if logIncomingMessages { recordLog(message.kind.rawValue, kind: .incoming) }
 
+		lastMessageKind = message.kind
 		if self.handle(builtInMessage: message) {
 			reply(DevicePortal.success)
 			self.processingIncomingMessage = false

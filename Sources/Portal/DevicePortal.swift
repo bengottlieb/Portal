@@ -46,6 +46,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	public var heartRate: Int? { didSet { objectChanged() }}
 	var isContextDirty = false
 	var processingIncomingMessage = false
+	var lastMessageKind = PortalMessage.Kind.none
 	
 	#if os(iOS)
 		public var isWatchAppInstalled: Bool { false }
