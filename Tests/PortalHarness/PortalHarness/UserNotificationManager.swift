@@ -19,12 +19,12 @@ public class UserNotificationManager: NSObject, UNUserNotificationCenterDelegate
 		content.sound = UNNotificationSound.default
 		
 		
-		print("Queuing “\(title)” in \(interval) seconds")
+		logg("Queuing “\(title)” in \(interval) seconds")
 		let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval, repeats: false)
 		
 		let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 		UNUserNotificationCenter.current().add(request) { err in
-			if let error = err { print("Error when adding a notification: \(error)") }
+			if let error = err { logg("Error when adding a notification: \(error)") }
 		}
 	}
 	
