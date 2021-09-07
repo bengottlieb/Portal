@@ -25,6 +25,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		public static let didResignActive = Kind(rawValue: "_inactive")
 		public static let didBecomeActive = Kind(rawValue: "_active")
 		public static let logMessage = Kind(rawValue: "_log")
+		public static let batteryLevel = Kind(rawValue: "_battery")
 
 		public static func ==(lhs: Kind, rhs: Kind) -> Bool { lhs.rawValue == rhs.rawValue }
 	}
@@ -90,6 +91,8 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		
 		return payload
 	}
+	
+	public var batteryLevel: Double? { body?["level"] as? Double }
 	
 	public init?<Payload: Codable>(kind: Kind, payload: Payload) {
 		do {

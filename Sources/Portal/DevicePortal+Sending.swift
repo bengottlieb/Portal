@@ -8,6 +8,21 @@
 import Foundation
 import WatchConnectivity
 
+#if canImport(WatchKit)
+import WatchKit
+
+@available(iOS 13.0, watchOS 7.0, *)
+public extension DevicePortal {
+	func sendBatteryLevel() {
+		let device = WKInterfaceDevice.current()
+		guard device.isBatteryMonitoringEnabled else { return }
+		
+		send(PortalMessage(.batteryLevel, ["level": device.batteryLevel]))
+	}
+}
+
+#endif
+
 public struct PortalFileKind: Equatable {
 	public let rawValue: String
 	public init(rawValue: String) {

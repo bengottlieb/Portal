@@ -51,6 +51,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	#if os(iOS)
 		public var isWatchAppInstalled: Bool { false }
 		public var isPaired: Bool { false }
+		public var watchBatteryLevel: Double? { didSet { objectChanged() }}
 	#endif
 	
 	init(messageHandler: PortalMessageHandler) {

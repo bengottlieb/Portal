@@ -123,6 +123,12 @@ public extension DevicePortal {
 				}
 			}
 			return true
+
+		#if os(iOS)
+			case .batteryLevel:
+				if let level = message.batteryLevel { watchBatteryLevel = level }
+				return true
+		#endif
 				
 		case .heartRate:
 			if let rate = message.heartRate {
