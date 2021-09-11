@@ -151,8 +151,9 @@ extension DevicePortal: WCSessionDelegate {
 	func applicationContextDidChange() {
 		do {
 			if !isActive, DevicePortal.verboseErrorMessages {
-				print("Not active, not updating context")
-				return }
+				if DevicePortal.verboseErrorMessages { print("Not active, not updating context") }
+				return
+			}
 			if DevicePortal.verboseErrorMessages { print("updating context") }
 			var context = self.applicationContext ?? [:]
 			context[Keys.hash] = Date().timeIntervalSince1970

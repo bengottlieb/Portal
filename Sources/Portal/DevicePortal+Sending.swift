@@ -127,7 +127,7 @@ public extension DevicePortal {
 			}
 		}
 		guard let session = self.session, canSendMessage(completion: completion) else {
-			print("Can't send message \(message.kind)")
+			if Self.verboseErrorMessages { print("Can't send message \(message.kind)") }
 			completion?(self.session == nil ? PortalError.sessionIsMissing : PortalError.cantSendMessage)
 			return }
 		
