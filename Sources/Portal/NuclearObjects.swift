@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol ReversibleNuclearObject {} 		// confirm to this if an object's phase can both increase and decrease
-public protocol VersionedNucleus: Codable {
+public protocol VersionedNucleus: Codable, Comparable {
 	associatedtype Phase: Codable & Comparable
 	var version: Int { get set }
 	var id: String { get set }
@@ -21,11 +21,14 @@ public extension VersionedNucleus {
 	var currentPhase: Phase { phonePhase > watchPhase ? phonePhase : watchPhase }
 	mutating func setDevicePhase(_ phase: Phase) {
 		#if os(iOS)
+			if phonePhase == phase { return }
 			phonePhase = phase
 		#endif
 		#if os(watchOS)
+			if watchPhase == phase { return }
 			watchPhase = phase
 		#endif
+		version += 1
 	}
 	
 	init(json: [String: Any]) throws {
@@ -59,7 +62,7 @@ public extension NuclearObject {
 	}
 
 	func load(nucleus new: Nucleus) {
-		if new.id != nucleus.id || new.version < nucleus.version { return }  		// hasn't updated
+		if new < nucleus { return }  		// hasn't updated
 		
 		let old = nucleus
 		self.nucleus = new
@@ -72,7 +75,10 @@ public extension NuclearObject {
 	
 	func load(nucleus json: [String: Any]) throws {
 		let new = try Nucleus(json: json)
-		if new.version < nucleus.version { return }  		// hasn't updated
+		if new < nucleus {
+			print("Passed an out-of-date nucleus, \(new.version) < \(nucleus.version)")
+			return
+		}  		// hasn't updated
 		
 		let old = nucleus
 		self.nucleus = new
