@@ -22,7 +22,7 @@ public class PortalToPhone: DevicePortal {
 
 	override public var heartRate: Int? { didSet {
 		if let rate = heartRate {
-			let message = PortalMessage.init(heartRate: rate)
+			let message = PortalMessage.init(heartRate: rate, date: Date())
 			send(message)
 		}
 	}}

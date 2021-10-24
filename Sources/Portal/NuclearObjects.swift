@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Suite
 
 public protocol ReversibleNuclearObject {} 		// confirm to this if an object's phase can both increase and decrease
 public protocol VersionedNucleus: Codable, Comparable {
@@ -76,7 +77,7 @@ public extension NuclearObject {
 	func load(nucleus json: [String: Any]) throws {
 		let new = try Nucleus(json: json)
 		if new < nucleus {
-			print("Passed an out-of-date nucleus, \(new.version) < \(nucleus.version)")
+			logg("Passed an out-of-date nucleus, \(new.version) < \(nucleus.version)")
 			return
 		}  		// hasn't updated
 		
@@ -97,7 +98,7 @@ public extension NuclearObject {
 				let output = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
 				return output
 			} catch {
-				print("Failed to encode \(self): \(error)")
+				logg("Failed to encode \(self): \(error)")
 				return nil
 			}
 		}
@@ -108,7 +109,7 @@ public extension NuclearObject {
 				let new = try JSONDecoder().decode(Nucleus.self, from: data)
 				self.load(nucleus: new)
 			} catch {
-				print("Failed to decode \(dict): \(error)")
+				logg("Failed to decode \(dict): \(error)")
 			}
 		}
 	}

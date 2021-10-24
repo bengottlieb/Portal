@@ -7,7 +7,7 @@
 
 import Foundation
 import WatchConnectivity
-
+import Suite
 #if canImport(WatchKit)
 import WatchKit
 
@@ -78,7 +78,7 @@ public extension DevicePortal {
 		if let body = payload {
 			do {
 				let json = try JSONSerialization.data(withJSONObject: body, options: [])
-				if DevicePortal.verboseErrorMessages { print("Sending \(json.count) bytes") }
+				if DevicePortal.verboseErrorMessages { logg("Sending \(json.count) bytes") }
 			} catch {
 				completion?(.failure(error))
 				return
@@ -97,13 +97,13 @@ public extension DevicePortal {
 	
 	func canSendMessage(completion: ((Error) -> Void)?) -> Bool {
 		if !self.isActive {
-			if DevicePortal.verboseErrorMessages { print("Trying to send a message to an inactive counterpart") }
+			if DevicePortal.verboseErrorMessages { logg("Trying to send a message to an inactive counterpart") }
 			completion?(PortalError.sessionIsInactive)
 			return false
 		}
 
 		if !self.isReachable {
-			if DevicePortal.verboseErrorMessages { print("Trying to send a message to an unreachable counterpart") }
+			if DevicePortal.verboseErrorMessages { logg("Trying to send a message to an unreachable counterpart") }
 			completion?(PortalError.counterpartIsNotReachable)
 			return false
 		}
@@ -120,14 +120,14 @@ public extension DevicePortal {
 	
 	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
 		if processingIncomingMessage {
-			print("\(Date()) Still processing incoming (\(lastMessageKind)), retrying in 0.1")
+			logg("\(Date()) Still processing incoming (\(lastMessageKind)), retrying in 0.1")
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 				self.send(message, completion: completion)
 				return
 			}
 		}
 		guard let session = self.session, canSendMessage(completion: completion) else {
-			if Self.verboseErrorMessages { print("Can't send message \(message.kind)") }
+			if Self.verboseErrorMessages { logg("Can't send message \(message.kind)") }
 			completion?(self.session == nil ? PortalError.sessionIsMissing : PortalError.cantSendMessage)
 			return }
 		

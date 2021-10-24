@@ -5,7 +5,7 @@
 //  Created by Ben Gottlieb on 10/17/20.
 //
 
-import Foundation
+import Suite
 
 public typealias SendCallback = (Result<[String: Any], Error>) -> Void
 
@@ -77,11 +77,17 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 	}
 	public var logMessage: String? { body?["log"] as? String }
 	
-	public init(heartRate: Int) {
-		self.init(.heartRate, ["rate": heartRate])
+	public init(heartRate: Int, date: Date) {
+		self.init(.heartRate, ["rate": heartRate, "date": date.timeIntervalSinceReferenceDate])
 	}
 
 	public var heartRate: Int? { body?["rate"] as? Int }
+	public var date: Date? {
+		if let time = body?["date"] as? TimeInterval {
+			return Date(timeIntervalSinceReferenceDate: time)
+		}
+		return nil
+	}
 	var payload: [String: Any] {
 		var payload: [String: Any] = ["kind": kind.rawValue, "date": createdAt.timeIntervalSinceReferenceDate]
 		
@@ -99,7 +105,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 			let json = try CodableWrapper(body: payload).asJSON()
 			self.init(kind, json)
 		} catch {
-			print("Failed to encode: \(error)")
+			logg(error: error, "Failed to encode: \(payload)")
 			return nil
 		}
 	}

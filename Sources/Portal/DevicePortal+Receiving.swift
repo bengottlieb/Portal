@@ -54,7 +54,7 @@ public extension DevicePortal {
 				}
 			}
 		} catch {
-			print("Error when copying received file: \(error)")
+			logg(error: error, "Error when copying received file")
 		}
 	}
 
@@ -133,6 +133,7 @@ public extension DevicePortal {
 		case .heartRate:
 			if let rate = message.heartRate {
 				self.heartRate = rate
+				self.heartRateReceivedAt = message.date
 				DispatchQueue.main.async { NotificationCenter.default.post(name: Notifications.heartRateReceived, object: rate) }
 			}
 			return true

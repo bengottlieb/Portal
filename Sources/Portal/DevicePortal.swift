@@ -44,6 +44,7 @@ public class DevicePortal: NSObject, ObservableObject {
 	public internal(set) var isCounterpartActive = false { didSet { objectChanged() }}
 	public var isApplicationActive: Bool? { didSet { if isApplicationActive != oldValue { applicationContextDidChange() }}}
 	public var heartRate: Int? { didSet { objectChanged() }}
+	public var heartRateReceivedAt: Date?
 	var isContextDirty = false
 	var processingIncomingMessage = false
 	var lastMessageKind = PortalMessage.Kind.none
@@ -118,14 +119,14 @@ extension DevicePortal: WCSessionDelegate {
 		DispatchQueue.main.async {
 			var context = session.applicationContext
 			if context.isEmpty, Self.cacheContexts, let cached = self.cachedContext { context = cached }
-			if DevicePortal.verboseErrorMessages { print("Staring context: \(context)") }
+			if DevicePortal.verboseErrorMessages { logg("Initial context: \(context)") }
 
 			self.received(context: context, restoring: true)
 			if self.isContextDirty {
 				self.applicationContextDidChange()
 			}
 
-			if let err = error { print("Failed to activate WCSession: \(err)")}
+			if let err = error { logg(error: err, "Failed to activate WCSession")}
 			self.activationError = error
 			self.objectChanged()
 		}
@@ -151,10 +152,10 @@ extension DevicePortal: WCSessionDelegate {
 	func applicationContextDidChange() {
 		do {
 			if !isActive, DevicePortal.verboseErrorMessages {
-				if DevicePortal.verboseErrorMessages { print("Not active, not updating context") }
+				if DevicePortal.verboseErrorMessages { logg("Not active, not updating context") }
 				return
 			}
-			if DevicePortal.verboseErrorMessages { print("updating context") }
+			if DevicePortal.verboseErrorMessages { logg("updating context") }
 			var context = self.applicationContext ?? [:]
 			context[Keys.hash] = Date().timeIntervalSince1970
 			if let isActive = isApplicationActive { context[Keys.isActive] = isActive }
