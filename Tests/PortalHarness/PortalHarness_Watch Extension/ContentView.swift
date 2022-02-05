@@ -38,7 +38,7 @@ struct ContentView: View {
 				}
 
 				Button("Send Context") {
-					portal.applicationContext = ["C": "d"]
+					portal.set(applicationContext: ["C": "d"])
 				}
 
 				Button("Send User Info") {

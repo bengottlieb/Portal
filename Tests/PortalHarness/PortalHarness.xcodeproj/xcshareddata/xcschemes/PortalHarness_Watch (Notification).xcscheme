@@ -56,8 +56,10 @@
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "PortalHarness_Watch Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/PortalHarness_Phone">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5698338253B452600FEE479"
@@ -65,7 +67,7 @@
             BlueprintName = "PortalHarness_Watch"
             ReferencedContainer = "container:PortalHarness.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -75,8 +77,10 @@
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "8"
       notificationPayloadFile = "PortalHarness_Watch Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/PortalHarness_Phone">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B5698338253B452600FEE479"
@@ -84,7 +88,16 @@
             BlueprintName = "PortalHarness_Watch"
             ReferencedContainer = "container:PortalHarness.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "B5698338253B452600FEE479"
+            BuildableName = "PortalHarness_Watch.app"
+            BlueprintName = "PortalHarness_Watch"
+            ReferencedContainer = "container:PortalHarness.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

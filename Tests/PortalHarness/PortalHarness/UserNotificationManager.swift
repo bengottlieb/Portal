@@ -7,6 +7,7 @@
 
 import Foundation
 import UserNotifications
+import Suite
 
 public class UserNotificationManager: NSObject, UNUserNotificationCenterDelegate {
 	public static let instance = UserNotificationManager()

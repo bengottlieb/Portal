@@ -47,7 +47,7 @@ struct ContentView: View {
 			}
 
 			Button("Send Context") {
-				portal.applicationContext = ["A": "b"]
+				portal.set(applicationContext: ["A": "b"])
 			}
 		}
 		if let message = portal.mostRecentMessage {

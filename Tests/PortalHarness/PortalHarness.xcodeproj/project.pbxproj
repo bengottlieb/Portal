@@ -3,18 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B503C4CF253B5B530058F4A0 /* DevicePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4CD253B5B530058F4A0 /* DevicePortal.swift */; };
-		B503C4D0253B5B530058F4A0 /* PortalToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */; };
-		B503C4D4253B5B5D0058F4A0 /* DevicePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4CD253B5B530058F4A0 /* DevicePortal.swift */; };
-		B503C4D9253B5C8C0058F4A0 /* PortalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */; };
-		B503C4DA253B5C8C0058F4A0 /* PortalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */; };
-		B503C4E8253B67650058F4A0 /* PortalMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */; };
-		B503C4E9253B67650058F4A0 /* PortalMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */; };
-		B503C508253B82940058F4A0 /* PortalToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */; };
 		B503C513253BD42A0058F4A0 /* apple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B503C512253BD42A0058F4A0 /* apple.jpeg */; };
 		B53311CF25A4152F009DA602 /* UserNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53311CE25A4152F009DA602 /* UserNotificationManager.swift */; };
 		B5698327253B437300FEE479 /* PortalHarnessApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5698326253B437300FEE479 /* PortalHarnessApp.swift */; };
@@ -38,6 +30,32 @@
 		B5698387253B45DE00FEE479 /* Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; };
 		B5698388253B45DE00FEE479 /* Portal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5AC956E253CA05100FC6105 /* apple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B503C512253BD42A0058F4A0 /* apple.jpeg */; };
+		B5EC15E927AEBCA000222587 /* Suite in Frameworks */ = {isa = PBXBuildFile; productRef = B5EC15E827AEBCA000222587 /* Suite */; };
+		B5EC15EB27AEBCA700222587 /* Suite in Frameworks */ = {isa = PBXBuildFile; productRef = B5EC15EA27AEBCA700222587 /* Suite */; };
+		B5EC15F827AEBCE300222587 /* DevicePortal+Receiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EC27AEBCE300222587 /* DevicePortal+Receiving.swift */; };
+		B5EC15F927AEBCE300222587 /* DevicePortal+Receiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EC27AEBCE300222587 /* DevicePortal+Receiving.swift */; };
+		B5EC15FA27AEBCE300222587 /* PortalMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15ED27AEBCE300222587 /* PortalMessageHandler.swift */; };
+		B5EC15FB27AEBCE300222587 /* PortalMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15ED27AEBCE300222587 /* PortalMessageHandler.swift */; };
+		B5EC15FC27AEBCE300222587 /* PortalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EE27AEBCE300222587 /* PortalMessage.swift */; };
+		B5EC15FD27AEBCE300222587 /* PortalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EE27AEBCE300222587 /* PortalMessage.swift */; };
+		B5EC15FE27AEBCE300222587 /* PortalConsoleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EF27AEBCE300222587 /* PortalConsoleLayer.swift */; };
+		B5EC15FF27AEBCE300222587 /* PortalConsoleLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EF27AEBCE300222587 /* PortalConsoleLayer.swift */; };
+		B5EC160027AEBCE300222587 /* NuclearObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F027AEBCE300222587 /* NuclearObjects.swift */; };
+		B5EC160127AEBCE300222587 /* NuclearObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F027AEBCE300222587 /* NuclearObjects.swift */; };
+		B5EC160227AEBCE300222587 /* PortalConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F127AEBCE300222587 /* PortalConsoleView.swift */; };
+		B5EC160327AEBCE300222587 /* PortalConsoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F127AEBCE300222587 /* PortalConsoleView.swift */; };
+		B5EC160427AEBCE300222587 /* PortalToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F227AEBCE300222587 /* PortalToPhone.swift */; };
+		B5EC160527AEBCE300222587 /* PortalToPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F227AEBCE300222587 /* PortalToPhone.swift */; };
+		B5EC160627AEBCE300222587 /* PortalConnectionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F327AEBCE300222587 /* PortalConnectionIndicator.swift */; };
+		B5EC160727AEBCE300222587 /* PortalConnectionIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F327AEBCE300222587 /* PortalConnectionIndicator.swift */; };
+		B5EC160827AEBCE300222587 /* PortalControlsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F427AEBCE300222587 /* PortalControlsBar.swift */; };
+		B5EC160927AEBCE300222587 /* PortalControlsBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F427AEBCE300222587 /* PortalControlsBar.swift */; };
+		B5EC160A27AEBCE300222587 /* PortalToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F527AEBCE300222587 /* PortalToWatch.swift */; };
+		B5EC160B27AEBCE300222587 /* PortalToWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F527AEBCE300222587 /* PortalToWatch.swift */; };
+		B5EC160C27AEBCE300222587 /* DevicePortal+Sending.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F627AEBCE300222587 /* DevicePortal+Sending.swift */; };
+		B5EC160D27AEBCE300222587 /* DevicePortal+Sending.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F627AEBCE300222587 /* DevicePortal+Sending.swift */; };
+		B5EC160E27AEBCE300222587 /* DevicePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F727AEBCE300222587 /* DevicePortal.swift */; };
+		B5EC160F27AEBCE300222587 /* DevicePortal.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15F727AEBCE300222587 /* DevicePortal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,11 +137,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B503C4CD253B5B530058F4A0 /* DevicePortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePortal.swift; sourceTree = "<group>"; };
-		B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalToPhone.swift; sourceTree = "<group>"; };
-		B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalMessage.swift; sourceTree = "<group>"; };
-		B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalToWatch.swift; sourceTree = "<group>"; };
-		B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortalMessageHandler.swift; sourceTree = "<group>"; };
 		B503C512253BD42A0058F4A0 /* apple.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpeg; sourceTree = "<group>"; };
 		B53311CE25A4152F009DA602 /* UserNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationManager.swift; sourceTree = "<group>"; };
 		B5698323253B437300FEE479 /* PortalHarness_Phone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PortalHarness_Phone.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +165,19 @@
 		B5698382253B45DE00FEE479 /* Portal_Phone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Portal_Phone.h; sourceTree = "<group>"; };
 		B5698383253B45DE00FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5698393253B48E300FEE479 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../../Package.swift; sourceTree = "<group>"; };
+		B5EC15E627AEBC7F00222587 /* Suite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Suite; path = ../../../Suite; sourceTree = "<group>"; };
+		B5EC15EC27AEBCE300222587 /* DevicePortal+Receiving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DevicePortal+Receiving.swift"; sourceTree = "<group>"; };
+		B5EC15ED27AEBCE300222587 /* PortalMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalMessageHandler.swift; sourceTree = "<group>"; };
+		B5EC15EE27AEBCE300222587 /* PortalMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalMessage.swift; sourceTree = "<group>"; };
+		B5EC15EF27AEBCE300222587 /* PortalConsoleLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalConsoleLayer.swift; sourceTree = "<group>"; };
+		B5EC15F027AEBCE300222587 /* NuclearObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NuclearObjects.swift; sourceTree = "<group>"; };
+		B5EC15F127AEBCE300222587 /* PortalConsoleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalConsoleView.swift; sourceTree = "<group>"; };
+		B5EC15F227AEBCE300222587 /* PortalToPhone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalToPhone.swift; sourceTree = "<group>"; };
+		B5EC15F327AEBCE300222587 /* PortalConnectionIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalConnectionIndicator.swift; sourceTree = "<group>"; };
+		B5EC15F427AEBCE300222587 /* PortalControlsBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalControlsBar.swift; sourceTree = "<group>"; };
+		B5EC15F527AEBCE300222587 /* PortalToWatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalToWatch.swift; sourceTree = "<group>"; };
+		B5EC15F627AEBCE300222587 /* DevicePortal+Sending.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DevicePortal+Sending.swift"; sourceTree = "<group>"; };
+		B5EC15F727AEBCE300222587 /* DevicePortal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DevicePortal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +201,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EC15E927AEBCA000222587 /* Suite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5EC15EB27AEBCA700222587 /* Suite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,11 +219,18 @@
 		B503C4CC253B5B530058F4A0 /* Portal */ = {
 			isa = PBXGroup;
 			children = (
-				B503C4CD253B5B530058F4A0 /* DevicePortal.swift */,
-				B503C4CE253B5B530058F4A0 /* PortalToPhone.swift */,
-				B503C4E1253B66E70058F4A0 /* PortalToWatch.swift */,
-				B503C4D8253B5C8C0058F4A0 /* PortalMessage.swift */,
-				B503C4E7253B67650058F4A0 /* PortalMessageHandler.swift */,
+				B5EC15F727AEBCE300222587 /* DevicePortal.swift */,
+				B5EC15EC27AEBCE300222587 /* DevicePortal+Receiving.swift */,
+				B5EC15F627AEBCE300222587 /* DevicePortal+Sending.swift */,
+				B5EC15F027AEBCE300222587 /* NuclearObjects.swift */,
+				B5EC15F327AEBCE300222587 /* PortalConnectionIndicator.swift */,
+				B5EC15EF27AEBCE300222587 /* PortalConsoleLayer.swift */,
+				B5EC15F127AEBCE300222587 /* PortalConsoleView.swift */,
+				B5EC15F427AEBCE300222587 /* PortalControlsBar.swift */,
+				B5EC15EE27AEBCE300222587 /* PortalMessage.swift */,
+				B5EC15ED27AEBCE300222587 /* PortalMessageHandler.swift */,
+				B5EC15F227AEBCE300222587 /* PortalToPhone.swift */,
+				B5EC15F527AEBCE300222587 /* PortalToWatch.swift */,
 			);
 			name = Portal;
 			path = ../../Sources/Portal;
@@ -204,6 +239,7 @@
 		B569831A253B437300FEE479 = {
 			isa = PBXGroup;
 			children = (
+				B5EC15E527AEBC7F00222587 /* Packages */,
 				B5698393253B48E300FEE479 /* Package.swift */,
 				B503C4CC253B5B530058F4A0 /* Portal */,
 				B5698325253B437300FEE479 /* PortalHarness */,
@@ -212,6 +248,7 @@
 				B569836C253B45D200FEE479 /* Portal_Watch */,
 				B5698381253B45DE00FEE479 /* Portal_Phone */,
 				B5698324253B437300FEE479 /* Products */,
+				B5EC15E727AEBCA000222587 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -298,6 +335,21 @@
 				B5698383253B45DE00FEE479 /* Info.plist */,
 			);
 			path = Portal_Phone;
+			sourceTree = "<group>";
+		};
+		B5EC15E527AEBC7F00222587 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				B5EC15E627AEBC7F00222587 /* Suite */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		B5EC15E727AEBCA000222587 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,6 +445,9 @@
 			dependencies = (
 			);
 			name = Portal_Watch;
+			packageProductDependencies = (
+				B5EC15E827AEBCA000222587 /* Suite */,
+			);
 			productName = Portal_Watch;
 			productReference = B569836B253B45D200FEE479 /* Portal.framework */;
 			productType = "com.apple.product-type.framework";
@@ -411,6 +466,9 @@
 			dependencies = (
 			);
 			name = Portal_Phone;
+			packageProductDependencies = (
+				B5EC15EA27AEBCA700222587 /* Suite */,
+			);
 			productName = Portal_Phone;
 			productReference = B5698380253B45DE00FEE479 /* Portal.framework */;
 			productType = "com.apple.product-type.framework";
@@ -435,11 +493,11 @@
 					};
 					B569836A253B45D200FEE479 = {
 						CreatedOnToolsVersion = 12.0;
-						LastSwiftMigration = 1210;
+						LastSwiftMigration = 1320;
 					};
 					B569837F253B45DE00FEE479 = {
 						CreatedOnToolsVersion = 12.0;
-						LastSwiftMigration = 1210;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -537,10 +595,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B503C4CF253B5B530058F4A0 /* DevicePortal.swift in Sources */,
-				B503C4E8253B67650058F4A0 /* PortalMessageHandler.swift in Sources */,
-				B503C4D0253B5B530058F4A0 /* PortalToPhone.swift in Sources */,
-				B503C4D9253B5C8C0058F4A0 /* PortalMessage.swift in Sources */,
+				B5EC160027AEBCE300222587 /* NuclearObjects.swift in Sources */,
+				B5EC160627AEBCE300222587 /* PortalConnectionIndicator.swift in Sources */,
+				B5EC15FA27AEBCE300222587 /* PortalMessageHandler.swift in Sources */,
+				B5EC160227AEBCE300222587 /* PortalConsoleView.swift in Sources */,
+				B5EC160C27AEBCE300222587 /* DevicePortal+Sending.swift in Sources */,
+				B5EC160827AEBCE300222587 /* PortalControlsBar.swift in Sources */,
+				B5EC15FE27AEBCE300222587 /* PortalConsoleLayer.swift in Sources */,
+				B5EC160E27AEBCE300222587 /* DevicePortal.swift in Sources */,
+				B5EC160A27AEBCE300222587 /* PortalToWatch.swift in Sources */,
+				B5EC15F827AEBCE300222587 /* DevicePortal+Receiving.swift in Sources */,
+				B5EC160427AEBCE300222587 /* PortalToPhone.swift in Sources */,
+				B5EC15FC27AEBCE300222587 /* PortalMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,10 +614,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B503C4D4253B5B5D0058F4A0 /* DevicePortal.swift in Sources */,
-				B503C4E9253B67650058F4A0 /* PortalMessageHandler.swift in Sources */,
-				B503C508253B82940058F4A0 /* PortalToWatch.swift in Sources */,
-				B503C4DA253B5C8C0058F4A0 /* PortalMessage.swift in Sources */,
+				B5EC160127AEBCE300222587 /* NuclearObjects.swift in Sources */,
+				B5EC160727AEBCE300222587 /* PortalConnectionIndicator.swift in Sources */,
+				B5EC15FB27AEBCE300222587 /* PortalMessageHandler.swift in Sources */,
+				B5EC160327AEBCE300222587 /* PortalConsoleView.swift in Sources */,
+				B5EC160D27AEBCE300222587 /* DevicePortal+Sending.swift in Sources */,
+				B5EC160927AEBCE300222587 /* PortalControlsBar.swift in Sources */,
+				B5EC15FF27AEBCE300222587 /* PortalConsoleLayer.swift in Sources */,
+				B5EC160F27AEBCE300222587 /* DevicePortal.swift in Sources */,
+				B5EC160B27AEBCE300222587 /* PortalToWatch.swift in Sources */,
+				B5EC15F927AEBCE300222587 /* DevicePortal+Receiving.swift in Sources */,
+				B5EC160527AEBCE300222587 /* PortalToPhone.swift in Sources */,
+				B5EC15FD27AEBCE300222587 /* PortalMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1015,6 +1089,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B5EC15E827AEBCA000222587 /* Suite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Suite;
+		};
+		B5EC15EA27AEBCA700222587 /* Suite */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Suite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B569831B253B437300FEE479 /* Project object */;
 }

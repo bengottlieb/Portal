@@ -40,7 +40,7 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 	
 	
 	init() {
-		PortalToWatch.instance.setup(messageHandler: self)
+		PortalToWatch.setup(messageHandler: self)
 		UserNotificationManager.instance.setup()
 	}
 	
