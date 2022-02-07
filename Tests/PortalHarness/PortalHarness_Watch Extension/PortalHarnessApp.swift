@@ -38,6 +38,7 @@ struct PortalHarnessApp: App, PortalMessageHandler {
 
 	init() {
 		PortalToPhone.setup(messageHandler: self)
+		PortalToPhone.instance.connect()
 	}
 	
 	@SceneBuilder var body: some Scene {

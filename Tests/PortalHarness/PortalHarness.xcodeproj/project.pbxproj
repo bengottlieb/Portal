@@ -30,6 +30,7 @@
 		B5698387253B45DE00FEE479 /* Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; };
 		B5698388253B45DE00FEE479 /* Portal.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5698380253B45DE00FEE479 /* Portal.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5AC956E253CA05100FC6105 /* apple.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B503C512253BD42A0058F4A0 /* apple.jpeg */; };
+		B5CA71DD27B0BA4E00F52ECD /* Suite in Frameworks */ = {isa = PBXBuildFile; productRef = B5CA71DC27B0BA4E00F52ECD /* Suite */; };
 		B5EC15E927AEBCA000222587 /* Suite in Frameworks */ = {isa = PBXBuildFile; productRef = B5EC15E827AEBCA000222587 /* Suite */; };
 		B5EC15EB27AEBCA700222587 /* Suite in Frameworks */ = {isa = PBXBuildFile; productRef = B5EC15EA27AEBCA700222587 /* Suite */; };
 		B5EC15F827AEBCE300222587 /* DevicePortal+Receiving.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5EC15EC27AEBCE300222587 /* DevicePortal+Receiving.swift */; };
@@ -165,7 +166,6 @@
 		B5698382253B45DE00FEE479 /* Portal_Phone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Portal_Phone.h; sourceTree = "<group>"; };
 		B5698383253B45DE00FEE479 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5698393253B48E300FEE479 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../../Package.swift; sourceTree = "<group>"; };
-		B5EC15E627AEBC7F00222587 /* Suite */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Suite; path = ../../../Suite; sourceTree = "<group>"; };
 		B5EC15EC27AEBCE300222587 /* DevicePortal+Receiving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DevicePortal+Receiving.swift"; sourceTree = "<group>"; };
 		B5EC15ED27AEBCE300222587 /* PortalMessageHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalMessageHandler.swift; sourceTree = "<group>"; };
 		B5EC15EE27AEBCE300222587 /* PortalMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortalMessage.swift; sourceTree = "<group>"; };
@@ -186,6 +186,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5698387253B45DE00FEE479 /* Portal.framework in Frameworks */,
+				B5CA71DD27B0BA4E00F52ECD /* Suite in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +240,6 @@
 		B569831A253B437300FEE479 = {
 			isa = PBXGroup;
 			children = (
-				B5EC15E527AEBC7F00222587 /* Packages */,
 				B5698393253B48E300FEE479 /* Package.swift */,
 				B503C4CC253B5B530058F4A0 /* Portal */,
 				B5698325253B437300FEE479 /* PortalHarness */,
@@ -337,14 +337,6 @@
 			path = Portal_Phone;
 			sourceTree = "<group>";
 		};
-		B5EC15E527AEBC7F00222587 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				B5EC15E627AEBC7F00222587 /* Suite */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		B5EC15E727AEBCA000222587 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -391,6 +383,9 @@
 				B5698386253B45DE00FEE479 /* PBXTargetDependency */,
 			);
 			name = PortalHarness_Phone;
+			packageProductDependencies = (
+				B5CA71DC27B0BA4E00F52ECD /* Suite */,
+			);
 			productName = PortalHarness;
 			productReference = B5698323253B437300FEE479 /* PortalHarness_Phone.app */;
 			productType = "com.apple.product-type.application";
@@ -510,6 +505,9 @@
 				Base,
 			);
 			mainGroup = B569831A253B437300FEE479;
+			packageReferences = (
+				B5CA71DB27B0BA4E00F52ECD /* XCRemoteSwiftPackageReference "suite" */,
+			);
 			productRefGroup = B5698324253B437300FEE479 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1090,7 +1088,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		B5CA71DB27B0BA4E00F52ECD /* XCRemoteSwiftPackageReference "suite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bengottlieb/suite";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		B5CA71DC27B0BA4E00F52ECD /* Suite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B5CA71DB27B0BA4E00F52ECD /* XCRemoteSwiftPackageReference "suite" */;
+			productName = Suite;
+		};
 		B5EC15E827AEBCA000222587 /* Suite */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Suite;
