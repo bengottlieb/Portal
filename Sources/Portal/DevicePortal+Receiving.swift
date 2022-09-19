@@ -85,7 +85,8 @@ public extension DevicePortal {
 			return
 		}
 		
-		if let result = self.messageHandler.didReceive(message: message) {
+		let messageResponse = self.messageHandler.didReceive(message: message)
+		if let result = messageResponse {
 			reply(result)
 		} else {
 			reply(DevicePortal.failure)

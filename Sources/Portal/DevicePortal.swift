@@ -10,7 +10,7 @@ import WatchConnectivity
 import Combine
 import Studio
 
-public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive, counterpartIsNotReachable, sessionIsMissing, cantSendMessage }
+public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive, counterpartIsNotReachable, sessionIsMissing, cantSendMessage, noMessage }
 
 typealias ErrorHandler = (Error) -> Void
 

@@ -118,7 +118,11 @@ public extension DevicePortal {
 		self.send(PortalMessage(log: log))
 	}
 	
-	func send(_ message: PortalMessage, completion: ((Error?) -> Void)? = nil) {
+	func send(_ message: PortalMessage?, completion: ((Error?) -> Void)? = nil) {
+		guard let message = message else {
+			completion?(PortalError.noMessage)
+			return
+		}
 		if processingIncomingMessage {
 			logg("\(Date()) Still processing incoming (\(lastMessageKind)), got \(message.kind), retrying in 0.1")
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
