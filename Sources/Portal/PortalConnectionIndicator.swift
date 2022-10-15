@@ -25,7 +25,7 @@ public struct PortalConnectionIndicator: View {
 				PortalConsoleLayer.showConsole.toggle()
 			}
 			.zIndex(101)
-			.onReceive(NotificationCenter.default.publisher(for: DevicePortal.Notifications.pingReceived)) { _ in
+			.onReceive(NotificationCenter.default.publisher(for: DevicePortal.Notifications.heartbeatReceived)) { _ in
 				let duration = 0.25
 				withAnimation(.linear(duration: duration)) { scale = 2.0 }
 				

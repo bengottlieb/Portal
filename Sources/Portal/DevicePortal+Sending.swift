@@ -35,19 +35,19 @@ public struct PortalFileKind: Equatable {
 
 @available(iOS 13.0, watchOS 7.0, *)
 public extension DevicePortal {
-	func startPinging(interval: TimeInterval = 1.0) {
+	func startHeartbeat(interval: TimeInterval = 1.0) {
 		DispatchQueue.main.async {
-			self.pingTimer?.invalidate()
+			self.heartbeatTimer?.invalidate()
 			
-			self.pingTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _  in
-				if self.isReachable { self.send(PortalMessage(.ping)) }
+			self.heartbeatTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _  in
+				if self.isReachable { self.send(PortalMessage(.heartbeat)) }
 			}
 		}
 	}
 	
-	func stopPinging() {
+	func stopHeartbeat() {
 		DispatchQueue.main.async {
-			self.pingTimer?.invalidate()
+			self.heartbeatTimer?.invalidate()
 		}
 	}
 	
@@ -84,7 +84,7 @@ public extension DevicePortal {
 				return
 			}
 		}
-		send(PortalMessage(.ping, payload) { error in
+		send(PortalMessage(.heartbeat, payload) { error in
 			let time = abs(started.timeIntervalSinceNow)
 			DispatchQueue.main.async {
 				self.lastReportedLatency = time

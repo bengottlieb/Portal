@@ -18,9 +18,9 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 		
 		public static let unknown = Kind(rawValue: "_unknown")
 		public static let none = Kind(rawValue: "_none")
-		public static let ping = Kind(rawValue: "_ping")
+		public static let heartbeat = Kind(rawValue: "_heartbeat")
 		public static let heartRate = Kind(rawValue: "_heartRate")
-		public static let pingResponse = Kind(rawValue: "_pingResponse")
+		public static let heartbeatResponse = Kind(rawValue: "_heartbeatResponse")
 		public static let string = Kind(rawValue: "_string")
 		public static let didResignActive = Kind(rawValue: "_inactive")
 		public static let didBecomeActive = Kind(rawValue: "_active")
@@ -43,7 +43,7 @@ public struct PortalMessage: CustomStringConvertible, Identifiable {
 	public let createdAt: Date
 	public var id: String
 	
-	public static var ping: PortalMessage { PortalMessage(.ping) }
+	public static var heartbeat: PortalMessage { PortalMessage(.heartbeat) }
 
 	public init(_ kind: Kind, _ body: [String: Any]? = nil, completion: SendCallback? = nil) {
 		self.kind = kind

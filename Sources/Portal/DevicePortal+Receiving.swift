@@ -110,9 +110,10 @@ public extension DevicePortal {
 	
 	func handle(builtInMessage message: PortalMessage) -> Bool {
 		switch message.kind {
-		case .ping:
+		case .heartbeat:
 			DispatchQueue.main.async {
-				NotificationCenter.default.post(name: Notifications.pingReceived, object: nil)
+				self.lastHeartbeatReceivedAt = Date()
+				NotificationCenter.default.post(name: Notifications.heartbeatReceived, object: nil)
 			}
 			return true
 			

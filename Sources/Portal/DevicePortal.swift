@@ -20,11 +20,12 @@ public class DevicePortal: NSObject, ObservableObject {
 	static public var cacheContexts = true
 	static public var verboseErrorMessages = false
 	public var previouslyReachable = false
+	@Published public var lastHeartbeatReceivedAt = Date.distantPast
 
 	public var session: WCSession?
 	public var messageHandler: PortalMessageHandler
 	public var recentMessages: [LoggedMessage] = []
-	public var pingTimer: Timer?
+	public var heartbeatTimer: Timer?
 	
 	@Published public var logOutgoingMessages = false
 	@Published public var logIncomingMessages = false
@@ -65,7 +66,7 @@ public class DevicePortal: NSObject, ObservableObject {
 		public static let heartRateReceived = Notification.Name("DevicePortal.heartRateReceived")
 		public static let lostConnection = Notification.Name("DevicePortal.lostConnection")
 		public static let restoredConnection = Notification.Name("DevicePortal.restoredConnection")
-		public static let pingReceived = Notification.Name("DevicePortal.pingReceived")
+		public static let heartbeatReceived = Notification.Name("DevicePortal.heartbeatReceived")
 	}
 	
 	@discardableResult
