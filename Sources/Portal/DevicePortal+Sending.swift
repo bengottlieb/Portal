@@ -124,7 +124,7 @@ public extension DevicePortal {
 			return
 		}
 		if processingIncomingMessage {
-			logg("\(Date()) Still processing incoming (\(lastMessageKind)), got \(message.kind), retrying in 0.1")
+			logg("\(Date()) Still processing incoming (\(self.lastMessageKind)), got \(message.kind), retrying in 0.1")
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 				logg("\(Date()) Retrying (\(message.kind))")
 				self.send(message, completion: completion)

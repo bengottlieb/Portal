@@ -77,7 +77,7 @@ public extension NuclearObject {
 	func load(nucleus json: [String: Any]) throws {
 		let new = try Nucleus(json: json)
 		if new < nucleus {
-			logg("Passed an out-of-date nucleus, \(new.version) < \(nucleus.version)")
+			logg("Passed an out-of-date nucleus, \(new.version) < \(self.nucleus.version)")
 			return
 		}  		// hasn't updated
 		
