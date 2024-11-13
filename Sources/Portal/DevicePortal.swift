@@ -8,7 +8,7 @@
 import Foundation
 import WatchConnectivity
 import Combine
-import Studio
+import Suite
 
 public enum PortalError: Error { case fileTransferDoesntWorkInTheSimulator, sessionIsInactive, counterpartIsNotReachable, sessionIsMissing, cantSendMessage, noMessage }
 

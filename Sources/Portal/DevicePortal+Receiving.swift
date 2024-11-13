@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Studio
+import Suite
 import WatchConnectivity
 
 @available(iOS 13.0, watchOS 7.0, *)
