@@ -16,7 +16,7 @@ let package = Package(
             targets: ["Portal"]),
     ],
 	dependencies: [
-	  .package(url: "https://github.com/bengottlieb/Suite.git", from: "1.1.114"),
+	  .package(url: "https://github.com/ios-tooling/Suite.git", from: "1.1.114"),
 
 	],
     targets: [
